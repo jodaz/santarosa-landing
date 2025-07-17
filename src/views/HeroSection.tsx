@@ -1,11 +1,22 @@
+import Background from "../assets/backgrounds/hero-background.jpg";
+import SANTAROSA3 from "../assets/logos/SANTAROSA3_transparent.png";
+
 function HeroSection() {
     return (
-        <section className="bg-gradient-to-b from-orange-200 to-teal-200 flex flex-col items-center justify-center py-16 relative">
-            <div className="w-full max-w-2xl h-64 bg-transparent rounded-lg flex items-center justify-center mb-8">
+        <section
+            className="bg-gradient-to-b flex flex-col items-center justify-center py-16 relative"
+            style={{
+                backgroundImage: `url(${Background})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                backgroundRepeat: "no-repeat",
+            }}
+        >
+            <div className="w-fit-content  h-64  flex items-center justify-center mb-8 backdrop-blur-sm rounded-lg">
                 <img
-                    src="/src/assets/logos/SANTAROSA3_transparent.png"
+                    src={SANTAROSA3}
                     alt="Santa Rosa de Lima 10K logo"
-                    className="h-64 w-64 object-contain"
+                    className="h-80 w-80 object-contain"
                 />
             </div>
         </section>
