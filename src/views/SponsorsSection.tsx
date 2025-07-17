@@ -1,3 +1,9 @@
+import Centauros from "../assets/logos/centauros.png";
+import SantaRosa from "../assets/logos/logosantarosa_realze.png";
+import Alcaldia from "../assets/logos/alcaldia.png";
+import Iandeber from "../assets/logos/ianderber.webp";
+import Titanes from "../assets/logos/TITANES23.png";
+
 function SponsorsSection() {
     return (
         <section className="flex flex-col p-8 bg-white">
@@ -10,43 +16,38 @@ function SponsorsSection() {
                     <div className="flex flex-wrap justify-center items-center gap-16 bg-white/60 rounded-xl p-6">
                         <div className="flex flex-col items-center">
                             <img
-                                src="/src/assets/logos/TITANES23.png"
+                                src={Titanes}
                                 alt="Titanes"
                                 className="w-[170px] h-[100px] object-contain bg-transparent rounded mb-2"
                             />
-                            {/* Removed sponsor name */}
                         </div>
                         <div className="flex flex-col items-center">
                             <img
-                                src="/src/assets/logos/centauros.png"
+                                src={Centauros}
                                 alt="Centauros"
                                 className="w-[153px] h-[89px] object-contain bg-transparent rounded mb-2"
                             />
-                            {/* Removed sponsor name */}
                         </div>
                         <div className="flex flex-col items-center">
                             <img
-                                src="/src/assets/logos/logosantarosa_realze.png"
+                                src={SantaRosa}
                                 alt="Santa Rosa"
                                 className="w-[153px] h-[89px] object-contain bg-transparent rounded mb-2"
                             />
-                            {/* Removed sponsor name */}
                         </div>
                         <div className="flex flex-col items-center">
                             <img
-                                src="/src/assets/logos/alcaldia.png"
+                                src={Alcaldia}
                                 alt="Alcaldia"
                                 className="w-[153px] h-[89px] object-contain bg-transparent rounded mb-2"
                             />
-                            {/* Removed sponsor name */}
                         </div>
                         <div className="flex flex-col items-center">
                             <img
-                                src="/src/assets/logos/ianderber.webp"
+                                src={Iandeber}
                                 alt="Iandeber"
                                 className="w-[153px] h-[89px] object-contain bg-transparent rounded mb-2"
                             />
-                            {/* Removed sponsor name */}
                         </div>
                     </div>
                 </div>
