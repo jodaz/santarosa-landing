@@ -13,9 +13,12 @@ function EventDetailsSection() {
                     2da pre-venta del 22 de junio al 15 de julio: $35 o BsCV
                 </div>
             </div>
-            <button className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-6 rounded mt-4 md:mt-0">
+            <a
+                href="#payment-info"
+                className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-6 rounded mt-4 md:mt-0 transition-colors duration-200 text-center no-underline hover:no-underline"
+            >
                 FORMULARIO DE INSCRIPCIÓN
-            </button>
+            </a>
         </section>
     );
 }

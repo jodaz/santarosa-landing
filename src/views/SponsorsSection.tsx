@@ -7,9 +7,9 @@ import Titanes from "../assets/logos/TITANES23.png";
 function SponsorsSection() {
     return (
         <section className="flex flex-col p-8 bg-white">
-            <h2 className="text-xl font-bold mb-4 text-black text-align-center md:text-left">
-                Nuestros organizadores
-            </h2>
+            <h1 className="text-xl font-bold mb-4 text-black text-align-center md:text-left ">
+                NUESTROS ORGANIZADORES
+            </h1>
 
             <div className="flex flex-row bg-white w-full">
                 <div className="w-full md:w-auto flex-1 flex justify-center">
