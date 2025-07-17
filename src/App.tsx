@@ -11,8 +11,8 @@ function App() {
     return (
         <div className="min-h-screen bg-white flex flex-col w-full">
             <HeroSection />
-            <SponsorsSection />
             <EventDetailsSection />
+            <SponsorsSection />
             <CategoriesSection />
             <KitSection />
             <PaymentInfoSection />

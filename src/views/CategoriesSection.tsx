@@ -1,7 +1,7 @@
 function CategoriesSection() {
     return (
-        <section className="flex flex-col md:flex-row gap-8 py-12 max-w-5xl mx-auto">
-            <div className="flex-1 bg-orange-500 text-white rounded-lg p-6">
+        <section className="flex flex-col md:flex-row gap-8 py-12 bg-orange-500 w-full">
+            <div className="flex-1  text-white rounded-lg p-6">
                 <h2 className="font-bold text-lg mb-2">CATEGORÍAS</h2>
                 <ul className="text-sm space-y-1">
                     <li>Juvenil 14 a 18</li>

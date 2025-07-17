@@ -1,9 +1,9 @@
 function EventDetailsSection() {
     return (
-        <section className="bg-teal-700 text-white py-8 px-4 flex flex-col md:flex-row items-center justify-between max-w-5xl mx-auto rounded-lg mt-8">
-            <div>
+        <section className="bg-teal-700 text-white py-8 px-4 flex flex-col md:flex-row items-center justify-between w-full">
+            <div className="text-center md:text-left w-full flex-1">
                 <div className="font-bold uppercase tracking-widest text-sm">
-                    SANTA ROSA DE LIMA 10K
+                    SANTA ROSA DE LIMA10K
                 </div>
                 <div className="text-xs mt-1">
                     30 de Agosto 2025
