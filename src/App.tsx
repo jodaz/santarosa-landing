@@ -1,24 +1,46 @@
 import "./App.css";
-import HeroSection from "./views/HeroSection";
-import SponsorsSection from "./views/SponsorsSection";
-import EventDetailsSection from "./views/EventDetailsSection";
-// import KitSection from "./views/KitSection";
-import PaymentInfoSection from "./views/PaymentInfoSection";
-import Footer from "./views/Footer";
-import CategoriesSection from "./views/CategoriesSection";
+import { Suspense, lazy } from "react";
+import Animation from "./components/Animation";
+
+const HeroSection = lazy(() => import("./views/HeroSection"));
+const SponsorsSection = lazy(() => import("./views/SponsorsSection"));
+const EventDetailsSection = lazy(() => import("./views/EventDetailsSection"));
+// const KitSection = lazy(() => import("./views/KitSection"));
+const PaymentInfoSection = lazy(() => import("./views/PaymentInfoSection"));
+const Footer = lazy(() => import("./views/Footer"));
+const CategoriesSection = lazy(() => import("./views/CategoriesSection"));
 
 function App() {
+    const loader = (
+        <div className="flex justify-center items-center py-12">
+            <Animation name="jogging" width={120} height={120} />
+        </div>
+    );
     return (
         <div className="min-h-screen bg-white flex flex-col w-full gap-8">
             <div className="flex flex-col w-full">
-                <HeroSection />
-                <EventDetailsSection />
+                <Suspense fallback={loader}>
+                    <HeroSection />
+                </Suspense>
+                <Suspense fallback={loader}>
+                    <EventDetailsSection />
+                </Suspense>
             </div>
-            <SponsorsSection />
-            <CategoriesSection />
-            {/* <KitSection /> */}
-            <PaymentInfoSection />
-            <Footer />
+            <Suspense fallback={loader}>
+                <SponsorsSection />
+            </Suspense>
+            <Suspense fallback={loader}>
+                <CategoriesSection />
+            </Suspense>
+            {/* <Suspense fallback={loader}>
+                <KitSection />
+            </Suspense> */}
+            <Suspense fallback={loader}>
+                <PaymentInfoSection />
+            </Suspense>
+            <Suspense fallback={loader}>
+                <Footer />
+            </Suspense>
         </div>
     );
 }
