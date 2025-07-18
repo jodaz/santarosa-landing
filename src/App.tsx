@@ -4,7 +4,6 @@ import Animation from "./components/Animation";
 
 const HeroSection = lazy(() => import("./views/HeroSection"));
 const SponsorsSection = lazy(() => import("./views/SponsorsSection"));
-const EventDetailsSection = lazy(() => import("./views/EventDetailsSection"));
 // const KitSection = lazy(() => import("./views/KitSection"));
 const PaymentInfoSection = lazy(() => import("./views/PaymentInfoSection"));
 const Footer = lazy(() => import("./views/Footer"));
