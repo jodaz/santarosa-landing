@@ -110,7 +110,7 @@ function PaymentInfoSection() {
                         }
                         className="w-full p-2 border rounded focus:outline-none focus:ring"
                     >
-                        <option>Carrera Adultos 10K</option>
+                        <option>Carrera 10K</option>
                         <option>Caminata 5K</option>
                     </select>
                 </div>
