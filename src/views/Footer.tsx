@@ -1,7 +1,14 @@
 function Footer() {
     return (
-        <footer className="bg-teal-700 text-white py-4 text-center font-bold tracking-wide">
-            GRACIAS POR SER PARTE DE LA EXPERIENCIA SANTA ROSA DE LIMA
+        <footer className="bg-gray-900 text-white py-16 text-center font-bold tracking-wide">
+            <p className="text-2xl mb-4">
+                ¡Gracias por participar en la experiencia{" "}
+                <span className="text-red-700 text-xl">#</span>
+                <span className="font-edo text-red-700 text-xl">
+                    SantaRosadeLima10K
+                </span>
+                !
+            </p>
         </footer>
     );
 }

@@ -6,14 +6,14 @@ import Titanes from "../assets/logos/TITANES23.png";
 
 function SponsorsSection() {
     return (
-        <section className="flex flex-col p-8 bg-white">
-            <h1 className="text-xl font-bold mb-4 text-black text-align-center md:text-left ">
+        <section className="flex flex-col px-8 py-24 bg-gray-100 w-full items-center">
+            <h1 className="font-edo text-5xl md:text-6xl font-bold mb-14 text-yellow-500 text-align-center ">
                 NUESTROS ORGANIZADORES
             </h1>
 
-            <div className="flex flex-row bg-white w-full">
+            <div className="flex flex-row w-full">
                 <div className="w-full md:w-auto flex-1 flex justify-center">
-                    <div className="flex flex-wrap justify-center items-center gap-16 bg-white/60 rounded-xl p-6">
+                    <div className="flex flex-wrap justify-center items-center gap-16  rounded-xl p-6">
                         <div className="flex flex-col items-center">
                             <img
                                 src={Titanes}

@@ -37,17 +37,16 @@ function PaymentInfoSection() {
         window.addEventListener("resize", handleResize);
         return () => window.removeEventListener("resize", handleResize);
     }, []);
-
     return (
         <section
-            className="bg-white py-8 px-4  rounded-lg mb-8 w-full"
+            className=" py-12 px-8 rounded-lg mb-8 w-full flex flex-col gap-10"
             id="payment-info"
         >
-            <h2 className="text-xl font-bold mb-2 text-black text-align-center md:text-left">
-                SECCIÓN DEL PAGO
+            <h2 className="font-edo text-5xl md:text-6xl font-bold mb-12 text-black text-center">
+                ¡REALIZA TU INSCRIPCIÓN!
             </h2>
-            <div className="flex flex-col lg:flex-row gap-8 items-start">
-                <div className="mb-4 w-full lg:max-w-lg mx-0 md:mx-0">
+            <div className="flex flex-col lg:flex-row gap-8 items-start lg:justify-evenly w-full">
+                <div className="mb-4 w-full lg:max-w-lg mx-0 md:mx-0 text-xl">
                     <div className="mb-6">
                         <h3 className="text-lg font-semibold mb-1">
                             Inscripciones 10K
@@ -114,17 +113,14 @@ function PaymentInfoSection() {
                     </select>
                     <div className="text-gray-700 mt-2">{category}</div>
                 </div>
-                <div className="w-full lg:flex-1">
-                    <iframe
-                        src={categoryForms[category]}
-                        width={iframeWidth}
-                        height="2000"
-                        title="Formulario de pago"
-                        className="w-full rounded border"
-                    >
-                        Loading…
-                    </iframe>
-                </div>
+                <iframe
+                    src={categoryForms[category]}
+                    width={iframeWidth}
+                    height="2000"
+                    title="Formulario de pago"
+                >
+                    Loading…
+                </iframe>
             </div>
         </section>
     );

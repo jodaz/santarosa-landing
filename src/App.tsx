@@ -17,7 +17,7 @@ function App() {
         </div>
     );
     return (
-        <div className="min-h-screen bg-white flex flex-col w-full gap-8">
+        <div className="min-h-screen bg-gray-100 flex flex-col w-full gap-8">
             <div className="flex flex-col w-full">
                 <Suspense fallback={loader}>
                     <HeroSection />

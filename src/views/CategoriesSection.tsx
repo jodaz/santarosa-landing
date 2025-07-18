@@ -1,21 +1,58 @@
+import Ruta from "@/assets/images/ruta.png";
+
 function CategoriesSection() {
     return (
-        <section className="flex flex-col md:flex-row gap-8 py-12 bg-orange-500 w-full">
-            <div className="flex-1  text-white rounded-lg p-6">
-                <h2 className="font-bold text-lg mb-2">CATEGORÍAS</h2>
-                <ul className="text-sm space-y-1">
-                    <li>Juvenil 14 a 18</li>
-                    <li>Libre 19 a 39</li>
-                    <li>Máster A 40 a 49</li>
-                    <li>Máster B 50 a 59</li>
-                    <li>Máster C 50 en adelante</li>
+        <section className="flex flex-col md:flex-row gap-8 py-12 p-8 bg-yellow-500 w-full">
+            <div className="flex-1  text-black rounded-lg p-6">
+                <h2 className="font-edo font-bold text-5xl md:text-6xl mb-2">
+                    CATEGORÍAS
+                </h2>
+                <ul className="text-xl space-y-4 mt-6 ">
+                    <li>
+                        <strong className="font-edo text-2xl">Juvenil</strong>{" "}
+                        14 a 18 años
+                    </li>
+                    <li>
+                        <strong className="font-edo text-2xl">Libre</strong> 19
+                        a 39 años
+                    </li>
+                    <li>
+                        <strong className="font-edo text-2xl">Máster A</strong>{" "}
+                        40 a 49 años
+                    </li>
+                    <li>
+                        <strong className="font-edo text-2xl">Máster B</strong>{" "}
+                        50 a 59 años
+                    </li>
+                    <li>
+                        <strong className="font-edo text-2xl">Máster C</strong>{" "}
+                        60 años en adelante
+                    </li>
                 </ul>
             </div>
-            <div className="flex-1 flex flex-col items-center">
-                <div className="w-full h-56 bg-gray-200 rounded-lg mb-4" />
-                <span className="text-xs text-gray-500">
-                    Ruta y servicios (placeholder)
-                </span>
+            <div className="flex-1 flex flex-col items-center mt-40">
+                <h2 className="font-edo font-bold text-5xl text-white md:text-6xl mb-8 text-left w-full">
+                    RUTA
+                </h2>
+                <ul className="text-xl space-y-4 mt-6 text-left w-full mb-4 font-bold">
+                    <li className="">
+                        <strong className="font-edo text-2xl">
+                            Distancia total
+                        </strong>{" "}
+                        10.200 metros
+                    </li>
+                    <li>
+                        <strong className="font-edo text-2xl">
+                            Distancia caminata
+                        </strong>{" "}
+                        5.100 metros
+                    </li>
+                </ul>
+                <img
+                    src={Ruta}
+                    alt="Ruta"
+                    className="rounded-lg w-full object-contain bg-transparent rounded mb-2"
+                />
             </div>
         </section>
     );
