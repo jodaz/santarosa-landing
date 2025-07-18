@@ -10,10 +10,10 @@ function CategoriesSection() {
                 <ul className="text-xl space-y-4 mt-6 ">
                     <li>
                         <strong className="font-edo text-2xl">Juvenil</strong>{" "}
-                        14 a 18 años
+                        16 a 19 años
                     </li>
                     <li>
-                        <strong className="font-edo text-2xl">Libre</strong> 19
+                        <strong className="font-edo text-2xl">Libre</strong> 20
                         a 39 años
                     </li>
                     <li>

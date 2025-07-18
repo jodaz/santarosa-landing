@@ -47,23 +47,39 @@ function PaymentInfoSection() {
                 ¡REALIZA TU INSCRIPCIÓN!
             </h2>
             <div className="flex flex-col lg:flex-row gap-8 items-start lg:justify-evenly w-full">
-                <div className="mb-4 w-full lg:max-w-lg mx-0 md:mx-0 text-xl">
+                <div className="mb-4 w-full lg:max-w-lg mx-0 md:mx-0 text-xl height-full">
                     <div className="mb-6">
-                        <h3 className="text-lg font-semibold mb-1">
-                            Inscripciones 10K
-                        </h3>
-                        <p className="text-gray-700 mb-2">
+                        <p className="text-gray-700 mb-4">
                             Rellena los campos y completa tu inscripción de la
                             carrera 10k SANTA ROSA DE LIMA 2025
                             <br />
                             para mayor información síguenos en Instagram{" "}
-                            <span className="font-semibold">@santarosa10k</span>
-                            .
+                            <a
+                                href="https://www.instagram.com/santarosa10k/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="font-semibold text-blue-600 hover:underline"
+                            >
+                                @santarosa10k
+                            </a>
                         </p>
-                        <p className="text-red-600 font-medium mb-2">
-                            Recuerda enviar tu comprobante de pago!
+                        <p className="text-red-600 font-medium mb-4">
+                            ¡Recuerda enviar tu comprobante de pago al contacto!
                         </p>
-                        <div className="mb-2 text-gray-700">
+                        <div className="mb-4 text-gray-700">
+                            ¡Para notificar el pago debe agregar la referencia y
+                            enviar el comprobante al Whatsapp!:
+                            <br />
+                            <br />
+                            <span className="font-semibold">WHATSAPP</span>
+                            <br />
+                            Pedro Giuseppi
+                            <br />
+                            <span className="font-semibold">
+                                {"📱 +58 4248878453"}
+                            </span>
+                        </div>
+                        <div className="mb-4 text-gray-700">
                             <span className="font-bold">PAGOMOVIL</span>
                             <br />
                             JOSÉ LUGO
@@ -85,14 +101,6 @@ function PaymentInfoSection() {
                             <br />
                             Documento de identidad: 9452385
                         </div>
-                        <div className="mb-2 text-gray-700">
-                            Para notificar el pago debe subir el comprobante o
-                            enviar al Whatsapp!:
-                            <br />
-                            <span className="font-semibold">
-                                +58 4248878453
-                            </span>
-                        </div>
                     </div>
                     <label
                         htmlFor="category"
@@ -112,7 +120,6 @@ function PaymentInfoSection() {
                         <option>Carrera Juvenil 5K</option>
                         <option>Caminata 5K</option>
                     </select>
-                    <div className="text-gray-700 mt-2">{category}</div>
                 </div>
                 <iframe
                     src={categoryForms[category]}
