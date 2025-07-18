@@ -1,24 +1,18 @@
 import React, { useState } from "react";
 
-const categories = [
-    "Carrera Adultos 10K",
-    "Carrera Juvenil 5K",
-    "Caminata 5K",
-] as const;
+const categories = ["Carrera 10K", "Caminata 5K"] as const;
 
 type Category = (typeof categories)[number];
 
 const categoryForms: Record<Category, string> = {
-    "Carrera Adultos 10K":
+    "Carrera 10K":
         "https://docs.google.com/forms/d/e/1FAIpQLSfiT2vL3iEm-GvfTPo3bSbRPcVeLz1sWzg40Xg-qzYr28d0hQ/viewform?embedded=true",
     "Caminata 5K":
         "https://docs.google.com/forms/d/e/1FAIpQLSf1aFwsWAMCkr7h0I7T986l2xYhhVipdJCrhiDgZDz9ByT1ug/viewform?embedded=true",
-    "Carrera Juvenil 5K":
-        "https://docs.google.com/forms/d/e/1FAIpQLSd5EILfFPPxbg2Snq4cquiN7FXXCLTcN_dlSseNzJqpGREqFw/viewform?embedded=true",
 };
 
 function PaymentInfoSection() {
-    const [category, setCategory] = useState<Category>("Carrera Adultos 10K");
+    const [category, setCategory] = useState<Category>("Carrera 10K");
     const [iframeWidth, setIframeWidth] = useState<number>(getIframeWidth());
 
     function getIframeWidth() {
@@ -117,7 +111,6 @@ function PaymentInfoSection() {
                         className="w-full p-2 border rounded focus:outline-none focus:ring"
                     >
                         <option>Carrera Adultos 10K</option>
-                        <option>Carrera Juvenil 5K</option>
                         <option>Caminata 5K</option>
                     </select>
                 </div>
