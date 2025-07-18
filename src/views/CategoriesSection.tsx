@@ -3,11 +3,11 @@ import Ruta from "@/assets/images/ruta.png";
 function CategoriesSection() {
     return (
         <section className="flex flex-col md:flex-row gap-8 py-12 p-8 bg-yellow-500 w-full">
-            <div className="flex-1  text-black rounded-lg p-6">
+            <div className="flex-1  text-black rounded-lg p-2 md:p-6">
                 <h2 className="font-edo font-bold text-5xl md:text-6xl mb-2">
                     CATEGORÍAS
                 </h2>
-                <ul className="text-xl space-y-4 mt-6 ">
+                <ul className="text-2xl space-y-4 mt-6 ">
                     <li>
                         <strong className="font-edo text-2xl">Juvenil</strong>{" "}
                         16 a 19 años
