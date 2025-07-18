@@ -14,19 +14,17 @@ function HeroSection() {
                     backgroundRepeat: "no-repeat",
                 }}
             ></div>
-            <div className="absolute top-3/4 md:top-1/2 md:right-[10%] transform -translate-y-1/2 w-fit h-64 flex items-center justify-center mb-8 rounded-lg flex flex-col px-8">
-                <h1 className="text-6xl md:text-8xl font-edo font-bold text-red-700 mb-4 drop-shadow-lg text-wrap">
+            <div className="absolute top-1/3 md:top-1/2 md:right-[10%] transform -translate-y-1/2 w-fit h-64 flex items-center justify-center mb-8 rounded-lg flex flex-col px-8">
+                <h1 className="text-6xl md:text-8xl font-edo font-bold text-red-700 md:mb-4 drop-shadow-lg text-wrap">
                     CORRE POR TU FÉ
                 </h1>
                 <img
                     src={SANTAROSA3}
                     alt="Santa Rosa de Lima 10K logo"
-                    className="min-h-96 w-96 object-contain"
+                    className="h-50 md:min-h-96 md:w-96 object-contain"
                 />
             </div>
-            <div className="w-full hidden md:block">
-                <EventDetailsSection />
-            </div>
+            <EventDetailsSection />
         </section>
     );
 }
