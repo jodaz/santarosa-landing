@@ -39,13 +39,13 @@ function CategoriesSection() {
                         <strong className="font-edo text-2xl">
                             Distancia total
                         </strong>{" "}
-                        10.200 metros
+                        10.000 metros
                     </li>
                     <li>
                         <strong className="font-edo text-2xl">
                             Distancia caminata
                         </strong>{" "}
-                        5.100 metros
+                        5.000 metros
                     </li>
                 </ul>
                 <img
