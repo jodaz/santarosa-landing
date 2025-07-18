@@ -4,7 +4,7 @@ import EventDetailsSection from "./EventDetailsSection";
 
 function HeroSection() {
     return (
-        <section className="relative h-screen relative w-full flex flex-col justify-end">
+        <section className="relative h-screen w-full flex flex-col justify-end">
             <div
                 className="flex flex-col w-full h-full gradient-to-b from-black/100 to-black/100"
                 style={{

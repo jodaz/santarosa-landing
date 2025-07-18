@@ -11,10 +11,10 @@ type Category = (typeof categories)[number];
 const categoryForms: Record<Category, string> = {
     "Carrera Adultos 10K":
         "https://docs.google.com/forms/d/e/1FAIpQLSfiT2vL3iEm-GvfTPo3bSbRPcVeLz1sWzg40Xg-qzYr28d0hQ/viewform?embedded=true",
-    "Carrera Juvenil 5K":
-        "https://docs.google.com/forms/d/e/1FAIpQLSd5EILfFPPxbg2Snq4cquiN7FXXCLTcN_dlSseNzJqpGREqFw/viewform?embedded=true", // Replace with actual form URL
     "Caminata 5K":
-        "https://docs.google.com/forms/d/e/1FAIpQLSf1aFwsWAMCkr7h0I7T986l2xYhhVipdJCrhiDgZDz9ByT1ug/viewform?embedded=true", // Replace with actual form URL
+        "https://docs.google.com/forms/d/e/1FAIpQLSf1aFwsWAMCkr7h0I7T986l2xYhhVipdJCrhiDgZDz9ByT1ug/viewform?embedded=true",
+    "Carrera Juvenil 5K":
+        "https://docs.google.com/forms/d/e/1FAIpQLSd5EILfFPPxbg2Snq4cquiN7FXXCLTcN_dlSseNzJqpGREqFw/viewform?embedded=true",
 };
 
 function PaymentInfoSection() {
@@ -37,6 +37,7 @@ function PaymentInfoSection() {
         window.addEventListener("resize", handleResize);
         return () => window.removeEventListener("resize", handleResize);
     }, []);
+
     return (
         <section
             className=" py-12 px-8 rounded-lg mb-8 w-full flex flex-col gap-10"
