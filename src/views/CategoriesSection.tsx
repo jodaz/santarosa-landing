@@ -30,7 +30,7 @@ function CategoriesSection() {
                     </li>
                 </ul>
             </div>
-            <div className="flex-1 flex flex-col items-center mt-40">
+            <div className="flex-1 flex flex-col items-center">
                 <h2 className="font-edo font-bold text-5xl text-white md:text-6xl mb-8 text-left w-full">
                     RUTA
                 </h2>

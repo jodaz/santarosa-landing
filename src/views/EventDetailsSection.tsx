@@ -1,6 +1,6 @@
 function EventDetailsSection() {
     return (
-        <section className="bg-gray-700 text-white px-10 py-20 md:p-20 flex flex-col md:flex-row items-center justify-between w-full">
+        <section className="bg-gray-700 text-white px-10 py-10 flex flex-col md:flex-row items-center justify-between w-full">
             <div className="text-center md:text-left w-full flex-1 gap-10">
                 <div className="font-edo font-bold uppercase tracking-widest text-2xl md:text-4xl text-white mb-10">
                     SANTA ROSA DE LIMA10K

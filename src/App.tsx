@@ -22,9 +22,6 @@ function App() {
                 <Suspense fallback={loader}>
                     <HeroSection />
                 </Suspense>
-                <Suspense fallback={loader}>
-                    <EventDetailsSection />
-                </Suspense>
             </div>
             <Suspense fallback={loader}>
                 <SponsorsSection />
