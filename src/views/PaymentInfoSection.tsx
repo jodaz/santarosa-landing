@@ -82,7 +82,7 @@ function PaymentInfoSection() {
                             <br />
                             9452385
                             <br />
-                            0412 707 39 49
+                            0424 847 49 94
                         </div>
                         <div className="mb-2 text-gray-700">
                             <span className="font-bold">
