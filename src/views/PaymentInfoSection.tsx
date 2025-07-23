@@ -32,6 +32,21 @@ function PaymentInfoSection() {
         return () => window.removeEventListener("resize", handleResize);
     }, []);
 
+    // Cost and included items for each category
+    const categoryDetails: Record<
+        Category,
+        { cost: number; includes: string[] }
+    > = {
+        "Carrera 10K": {
+            cost: 1400,
+            includes: ["Franela", "Medalla", "Dorsal", "Refrigerio"],
+        },
+        "Caminata 5K": {
+            cost: 700,
+            includes: ["Medalla", "Dorsal", "Refrigerio"],
+        },
+    };
+
     return (
         <section
             className=" py-12 px-8 rounded-lg mb-8 w-full flex flex-col gap-10"
@@ -113,6 +128,30 @@ function PaymentInfoSection() {
                         <option>Carrera 10K</option>
                         <option>Caminata 5K</option>
                     </select>
+
+                    {/* Cost and includes info */}
+                    <div className="mt-4 mb-2 text-lg text-gray-800">
+                        Costo de la{" "}
+                        {category === "Carrera 10K" ? "carrera" : "caminata"}:{" "}
+                        <span className="font-bold">
+                            {categoryDetails[category].cost}bs
+                        </span>
+                    </div>
+                    <div className="mb-4 text-gray-700">
+                        Incluye:
+                        <ul className="list-disc list-inside mt-1">
+                            {categoryDetails[category].includes.map((item) => (
+                                <li key={item}>{item}</li>
+                            ))}
+                        </ul>
+                    </div>
+                    {category === "Caminata 5K" && (
+                        <div className="mb-2 text-sm text-yellow-700 bg-yellow-100 rounded px-3 py-2">
+                            Si desea la camiseta, debe realizar el pago por el
+                            costo de la carrera, siendo{" "}
+                            <span className="font-bold">1400 bs</span>
+                        </div>
+                    )}
                 </div>
                 <iframe
                     src={categoryForms[category]}
