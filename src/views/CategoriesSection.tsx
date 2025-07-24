@@ -14,7 +14,11 @@ function CategoriesSection() {
                     </li>
                     <li>
                         <strong className="font-edo text-2xl">Libre</strong> 20
-                        a 39 años
+                        a 29 años
+                    </li>
+                    <li>
+                        <strong className="font-edo text-2xl">Submaster</strong>{" "}
+                        30 a 39 años
                     </li>
                     <li>
                         <strong className="font-edo text-2xl">Máster A</strong>{" "}
