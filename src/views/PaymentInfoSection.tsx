@@ -4,11 +4,10 @@ const categories = ["Carrera 10K", "Caminata 5K"] as const;
 
 type Category = (typeof categories)[number];
 
-const categoryForms: Record<Category, string> = {
+const categoryForms: Record<Category, string | null> = {
     "Carrera 10K":
         "https://docs.google.com/forms/d/e/1FAIpQLSfiT2vL3iEm-GvfTPo3bSbRPcVeLz1sWzg40Xg-qzYr28d0hQ/viewform?embedded=true",
-    "Caminata 5K":
-        "https://docs.google.com/forms/d/e/1FAIpQLSf1aFwsWAMCkr7h0I7T986l2xYhhVipdJCrhiDgZDz9ByT1ug/viewform?embedded=true",
+    "Caminata 5K": null, // No form for Caminata 5K
 };
 
 function PaymentInfoSection() {
@@ -145,22 +144,25 @@ function PaymentInfoSection() {
                             ))}
                         </ul>
                     </div>
+                </div>
+                <div style={{ width: iframeWidth, height: 2000 }}>
+                    {categoryForms[category] ? (
+                        <iframe
+                            src={categoryForms[category] as string}
+                            width={iframeWidth}
+                            height="2000"
+                            title="Formulario de pago"
+                        >
+                            Loading…
+                        </iframe>
+                    ) : null}
                     {category === "Caminata 5K" && (
-                        <div className="mb-2 text-sm text-yellow-700 bg-yellow-100 rounded px-3 py-2">
-                            Si desea la camiseta, debe realizar el pago por el
-                            costo de la carrera, siendo{" "}
-                            <span className="font-bold">1400 bs</span>
+                        <div className="mb-2 text-md text-yellow-700 bg-yellow-100 rounded px-3 py-2">
+                            ¡Atención!, hemos cerrado el ciclo de inscripciones
+                            para la caminata 5K.
                         </div>
                     )}
                 </div>
-                <iframe
-                    src={categoryForms[category]}
-                    width={iframeWidth}
-                    height="2000"
-                    title="Formulario de pago"
-                >
-                    Loading…
-                </iframe>
             </div>
         </section>
     );
