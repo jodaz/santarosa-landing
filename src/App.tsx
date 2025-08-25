@@ -5,7 +5,7 @@ import Animation from "./components/Animation";
 const HeroSection = lazy(() => import("./views/HeroSection"));
 const SponsorsSection = lazy(() => import("./views/SponsorsSection"));
 // const KitSection = lazy(() => import("./views/KitSection"));
-const PaymentInfoSection = lazy(() => import("./views/PaymentInfoSection"));
+// const PaymentInfoSection = lazy(() => import("./views/PaymentInfoSection"));
 const Footer = lazy(() => import("./views/Footer"));
 const CategoriesSection = lazy(() => import("./views/CategoriesSection"));
 
@@ -31,9 +31,9 @@ function App() {
             {/* <Suspense fallback={loader}>
                 <KitSection />
             </Suspense> */}
-            <Suspense fallback={loader}>
+            {/* <Suspense fallback={loader}>
                 <PaymentInfoSection />
-            </Suspense>
+            </Suspense> */}
             <Suspense fallback={loader}>
                 <Footer />
             </Suspense>

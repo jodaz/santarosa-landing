@@ -26,12 +26,12 @@ function EventDetailsSection() {
                     </div>
                 </div>
             </div>
-            <a
+            {/* <a
                 href="#payment-info"
                 className="font-edo bg-yellow-500 hover:bg-yellow-600 text-black hover:text-gray-600 font-bold px-6 py-1 md:py-3 md:px-8 rounded mt-6 md:mt-0 transition-colors duration-200 text-xl md:text-4xl text-center no-underline hover:no-underline"
             >
                 ¡INSCRÍBETE AHORA!
-            </a>
+            </a> */}
         </section>
     );
 }
