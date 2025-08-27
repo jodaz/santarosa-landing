@@ -1,6 +1,7 @@
 import Background from "../assets/backgrounds/hero-background2.jpg";
 import SANTAROSA3 from "../assets/logos/SANTAROSA3_transparent.png";
 import EventDetailsSection from "./EventDetailsSection";
+import Image from "next/image";
 
 function HeroSection() {
     return (
@@ -18,7 +19,7 @@ function HeroSection() {
                 <h1 className="text-6xl md:text-8xl font-edo font-bold text-red-700 md:mb-4 drop-shadow-lg text-wrap">
                     CORRE POR TU FÉ
                 </h1>
-                <img
+                <Image
                     src={SANTAROSA3}
                     alt="Santa Rosa de Lima 10K logo"
                     className="h-50 md:min-h-96 md:w-96 object-contain"

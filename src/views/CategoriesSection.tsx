@@ -1,4 +1,5 @@
 import Ruta from "@/assets/images/ruta.png";
+import Image from "next/image";
 
 function CategoriesSection() {
     return (
@@ -52,7 +53,7 @@ function CategoriesSection() {
                         5.000 metros
                     </li>
                 </ul>
-                <img
+                <Image
                     src={Ruta}
                     alt="Ruta"
                     className="rounded-lg w-full object-contain bg-transparent rounded mb-2"
