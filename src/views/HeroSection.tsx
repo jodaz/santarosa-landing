@@ -1,4 +1,3 @@
-import Background from "../assets/backgrounds/hero-background2.jpg";
 import SANTAROSA3 from "../assets/logos/SANTAROSA3_transparent.png";
 import EventDetailsSection from "./EventDetailsSection";
 import Image from "next/image";
@@ -9,7 +8,7 @@ function HeroSection() {
             <div
                 className="flex flex-col w-full h-full gradient-to-b from-black/100 to-black/100"
                 style={{
-                    backgroundImage: `url(${Background})`,
+                    backgroundImage: `url(./hero-background2.jpg)`,
                     backgroundSize: "cover",
                     backgroundPosition: "left",
                     backgroundRepeat: "no-repeat",
