@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 export const metadata: Metadata = {
     title: "Carrera y Caminata a Santa Rosa de Lima 2025 | Carúpano",
@@ -40,6 +41,7 @@ export default function RootLayout({
             <body>
                 <div id="root">{children}</div>
             </body>
+            <GoogleAnalytics gaId={`${process.env.NEXT_PUBLIC_ANALYTICS}`} />
         </html>
     );
 }
