@@ -1,9 +1,10 @@
 // components/MediaGallery.tsx
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import Image from 'next/image';
 import { RefreshCw, ChevronLeft, ChevronRight, Loader2, Download } from 'lucide-react';
+import { getOptimizedCloudinaryUrl } from '@/lib/cloudinary';
 import type { MediaFile, Pagination } from '@/types/media';
 
 export default function MediaGallery() {
@@ -14,6 +15,13 @@ export default function MediaGallery() {
   const [error, setError] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [cursor, setCursor] = useState<string | null>(null);
+  const [visibleImages, setVisibleImages] = useState<Set<string>>(new Set());
+  const observerRef = useRef<IntersectionObserver | null>(null);
+
+  // Helper function to generate optimized Cloudinary URL using SDK
+  const getOptimizedImageUrl = useCallback((file: MediaFile) => {
+    return getOptimizedCloudinaryUrl(file.url, 300);
+  }, []);
 
   const fetchPage = useCallback(async (page: number) => {
     setLoadingMore(page > 1);
@@ -34,6 +42,48 @@ export default function MediaGallery() {
       setLoadingMore(false);
     }
   }, [cursor]);
+
+  // Setup intersection observer for lazy loading
+  useEffect(() => {
+    observerRef.current = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const key = entry.target.getAttribute('data-key');
+            if (key) {
+              setVisibleImages((prev) => new Set(prev).add(key));
+            }
+          }
+        });
+      },
+      {
+        rootMargin: '50px',
+        threshold: 0.01
+      }
+    );
+
+    return () => {
+      if (observerRef.current) {
+        observerRef.current.disconnect();
+      }
+    };
+  }, []);
+
+  // Observe image containers when files change
+  useEffect(() => {
+    if (!observerRef.current) return;
+
+    const containers = document.querySelectorAll('[data-key]');
+    containers.forEach((container) => {
+      observerRef.current?.observe(container);
+    });
+
+    return () => {
+      containers.forEach((container) => {
+        observerRef.current?.unobserve(container);
+      });
+    };
+  }, [files]);
 
   useEffect(() => {
     fetchPage(1);
@@ -74,46 +124,59 @@ export default function MediaGallery() {
 
       {/* Image Grid - 5 columns (4 rows x 5 photos) */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-12">
-        {files.slice(0, 20).map(file => (
-          <div
-            key={file.key}
-            className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden"
-          >
-            <div className="p-3">
-              <div className="relative max-h-[150px] overflow-hidden rounded-md mb-3">
-                <Image
-                  src={file.url}
-                  alt={file.name}
-                  width={300}
-                  height={150}
-                  className="w-full h-full object-cover"
-                  placeholder="blur"
-                  blurDataURL="data:image/webp;base64,UklGRiIAAABXRUJQVlA4IBYAAAAwAQCdASoBAAEAAQAA"
-                />
-              </div>
-              <div className="flex items-center justify-between">
-                <h3 className="text-sm font-medium text-gray-900 truncate flex-1 mr-2" title={file.name}>
-                  {file.name}
-                </h3>
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    const link = document.createElement('a');
-                    // Prefer the proxied download URL (same-origin) which forces attachment
-                    link.href = file.downloadUrl || file.url;
-                    // The server sets Content-Disposition; the download attribute is a hint for same-origin
-                    link.download = file.name;
-                    link.click();
-                  }}
-                  className="flex-shrink-0 p-1.5 text-gray-500 hover:text-blue-600 hover:bg-blue-50 rounded transition-colors"
-                  title="Download"
-                >
-                  <Download className="w-4 h-4" />
-                </button>
+        {files.slice(0, 20).map(file => {
+          const isVisible = visibleImages.has(file.key);
+          const optimizedUrl = isVisible ? getOptimizedImageUrl(file) : '';
+          
+          return (
+            <div
+              key={file.key}
+              data-key={file.key}
+              className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden"
+            >
+              <div className="p-3">
+                <div className="relative max-h-[150px] overflow-hidden rounded-md mb-3 bg-gray-100">
+                  {isVisible ? (
+                    <Image
+                      src={optimizedUrl}
+                      alt={file.name}
+                      width={340}
+                      height={450}
+                      className="w-full h-full object-cover"
+                      loading="lazy"
+                      placeholder="blur"
+                      blurDataURL="data:image/webp;base64,UklGRiIAAABXRUJQVlA4IBYAAAAwAQCdASoBAAEAAQAA"
+                    />
+                  ) : (
+                    <div className="w-full h-[150px] flex items-center justify-center">
+                      <Loader2 className="w-6 h-6 animate-spin text-gray-400" />
+                    </div>
+                  )}
+                </div>
+                <div className="flex items-center justify-between">
+                  <h3 className="text-sm font-medium text-gray-900 truncate flex-1 mr-2" title={file.name}>
+                    {file.name}
+                  </h3>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      const link = document.createElement('a');
+                      // Prefer the proxied download URL (same-origin) which forces attachment
+                      link.href = file.downloadUrl || file.url;
+                      // The server sets Content-Disposition; the download attribute is a hint for same-origin
+                      link.download = file.name;
+                      link.click();
+                    }}
+                    className="flex-shrink-0 p-1.5 text-gray-500 hover:text-blue-600 hover:bg-blue-50 rounded transition-colors"
+                    title="Download"
+                  >
+                    <Download className="w-4 h-4" />
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
 
       {/* Loading more */}

@@ -11,6 +11,7 @@
     "dependencies": {
         "@aws-sdk/client-s3": "^3.927.0",
         "@aws-sdk/s3-request-presigner": "^3.927.0",
+        "@cloudinary/url-gen": "^1.22.0",
         "@next/third-parties": "^15.5.2",
         "lottie-react": "^2.4.1",
         "lucide-react": "^0.553.0",

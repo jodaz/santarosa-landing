@@ -14,7 +14,6 @@ const s3Client = new S3Client({
 
 const BUCKET = process.env.MEGA_S4_BUCKET!;
 const FOLDER = 'santarosa10k/';
-const CLOUDINARY_CLOUD_NAME = 'jodaz';  // ← CHANGE THIS!
 const PAGE_SIZE = 20;
 
 export async function GET(request: NextRequest) {
@@ -42,19 +41,15 @@ export async function GET(request: NextRequest) {
 
         // MEGA public Object URL (base for Cloudinary fetch)
         const megaPublicUrl = `https://s3.g.s4.mega.io/${process.env.MEGA_S4_BUCKET_ID}/${BUCKET}/${key}`;
-        
-        // Cloudinary fetch URL with auto-format + auto-quality
-        const cloudinaryUrl = `https://res.cloudinary.com/${CLOUDINARY_CLOUD_NAME}/image/fetch/f_auto,q_auto/${encodeURIComponent(megaPublicUrl)}`;
 
         return {
           key,
           name: fileName,
           size: obj.Size || 0,
           lastModified: obj.LastModified?.toISOString() || '',
-          url: cloudinaryUrl,  // Use this for display (Cloudinary fetch)
-          // Download proxy route that will stream the file from MEGA/S4 and force download
+          url: megaPublicUrl,  
           downloadUrl: `/api/download-media?key=${encodeURIComponent(key)}`,
-          type: 'image',       // All your files are images now
+          type: 'image',       
         };
       });
 
