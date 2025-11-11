@@ -1,61 +1,74 @@
 // app/api/list-media/route.ts
-import { NextResponse } from 'next/server';
-import { ListObjectsV2Command } from '@aws-sdk/client-s3';
-import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
-import { GetObjectCommand } from '@aws-sdk/client-s3';
-import { s3Client } from '../../../src/lib/s3';
+import { NextRequest, NextResponse } from 'next/server';
+import { S3Client, ListObjectsV2Command } from '@aws-sdk/client-s3';
+
+const s3Client = new S3Client({
+  region: 'auto',
+  endpoint: process.env.MEGA_S4_ENDPOINT!,
+  credentials: {
+    accessKeyId: process.env.MEGA_S4_ACCESS_KEY!,
+    secretAccessKey: process.env.MEGA_S4_SECRET_KEY!,
+  },
+  forcePathStyle: true,
+});
 
 const BUCKET = process.env.MEGA_S4_BUCKET!;
-const FOLDER = 'santarosa10k'; // Change this to your folder (include trailing slash)
+const FOLDER = 'santarosa10k/';
+const CLOUDINARY_CLOUD_NAME = 'jodaz';  // ← CHANGE THIS!
+const PAGE_SIZE = 20;
 
-export async function GET() {
+export async function GET(request: NextRequest) {
+  const { searchParams } = new URL(request.url);
+  const page = parseInt(searchParams.get('page') || '1');
+  const cursor = searchParams.get('cursor') || undefined;
+    console.log(cursor)
   try {
     const command = new ListObjectsV2Command({
       Bucket: BUCKET,
       Prefix: FOLDER,
+      MaxKeys: PAGE_SIZE + 1,
+      ContinuationToken: cursor || undefined,
     });
 
     const response = await s3Client.send(command);
-    
-    const files = await Promise.all(
-      (response.Contents || [])
-        .filter(obj => obj.Key !== FOLDER) // Exclude folder itself
-        .map(async (obj) => {
-          const key = obj.Key!;
-          const fileName = key.split('/').pop()!;
-          const extension = fileName.split('.').pop()?.toLowerCase() || '';
-          const isImage = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'svg'].includes(extension);
-          const isVideo = ['mp4', 'webm', 'mov', 'avi'].includes(extension);
-          const isAudio = ['mp3', 'wav', 'ogg'].includes(extension);
 
-          // Generate temporary signed URL (expires in 1 hour)
-          const signedUrl = await getSignedUrl(
-            s3Client,
-            new GetObjectCommand({ Bucket: BUCKET, Key: key }),
-            { expiresIn: 3600 }
-          );
+    const items = (response.Contents || [])
+      .filter(obj => obj.Key !== FOLDER)
+      .slice(0, PAGE_SIZE); // Limit to exactly PAGE_SIZE
 
-          // Public URL (if you enabled Object URL access in MEGA)
-          const publicUrl = `https://s3.g.s4.mega.io/${BUCKET}/${key}`;
+    const files = items.map(obj => {
+        const key = obj.Key!;
+        const fileName = key.split('/').pop()!;
 
-          return {
-            key,
-            name: fileName,
-            size: obj.Size || 0,
-            lastModified: obj.LastModified?.toISOString() || '',
-            signedUrl,
-            publicUrl,
-            type: isImage ? 'image' : isVideo ? 'video' : isAudio ? 'audio' : 'other',
-          };
-        })
-    );
+        // MEGA public Object URL (base for Cloudinary fetch)
+        const megaPublicUrl = `https://s3.g.s4.mega.io/${process.env.MEGA_S4_BUCKET_ID}/${BUCKET}/${key}`;
+        
+        // Cloudinary fetch URL with auto-format + auto-quality
+        const cloudinaryUrl = `https://res.cloudinary.com/${CLOUDINARY_CLOUD_NAME}/image/fetch/f_auto,q_auto/${encodeURIComponent(megaPublicUrl)}`;
 
-    return NextResponse.json({ files });
+        return {
+          key,
+          name: fileName,
+          size: obj.Size || 0,
+          lastModified: obj.LastModified?.toISOString() || '',
+          url: cloudinaryUrl,  // Use this everywhere!
+          type: 'image',       // All your files are images now
+        };
+      });
+
+
+    const hasNextPage = (response.Contents || []).length > PAGE_SIZE;
+    const nextCursor = hasNextPage ? response.NextContinuationToken : null;
+
+    return NextResponse.json({ files, pagination: {
+        page,
+        pageSize: PAGE_SIZE,
+        hasNextPage,
+        hasPrevPage: page > 1,
+        nextCursor,
+        total: response.KeyCount
+    } });
   } catch (error: any) {
-    console.error('List media error:', error);
-    return NextResponse.json(
-      { error: 'Failed to list media', details: error.message },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to list media', details: error.message }, { status: 500 });
   }
 }
