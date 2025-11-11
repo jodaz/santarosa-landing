@@ -4,23 +4,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
 import { RefreshCw, ChevronLeft, ChevronRight, Loader2, Download } from 'lucide-react';
-
-interface MediaFile {
-  key: string;
-  name: string;
-  size: number;
-  lastModified: string;
-  url: string;
-  type: string;
-}
-
-interface Pagination {
-  page: number;
-  pageSize: number;
-  hasNextPage: boolean;
-  hasPrevPage: boolean;
-  nextCursor: string | null;
-}
+import type { MediaFile, Pagination } from '@/types/media';
 
 export default function MediaGallery() {
   const [files, setFiles] = useState<MediaFile[]>([]);
@@ -115,7 +99,9 @@ export default function MediaGallery() {
                   onClick={(e) => {
                     e.stopPropagation();
                     const link = document.createElement('a');
-                    link.href = file.url;
+                    // Prefer the proxied download URL (same-origin) which forces attachment
+                    link.href = file.downloadUrl || file.url;
+                    // The server sets Content-Disposition; the download attribute is a hint for same-origin
                     link.download = file.name;
                     link.click();
                   }}

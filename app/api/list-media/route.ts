@@ -51,7 +51,9 @@ export async function GET(request: NextRequest) {
           name: fileName,
           size: obj.Size || 0,
           lastModified: obj.LastModified?.toISOString() || '',
-          url: cloudinaryUrl,  // Use this everywhere!
+          url: cloudinaryUrl,  // Use this for display (Cloudinary fetch)
+          // Download proxy route that will stream the file from MEGA/S4 and force download
+          downloadUrl: `/api/download-media?key=${encodeURIComponent(key)}`,
           type: 'image',       // All your files are images now
         };
       });
