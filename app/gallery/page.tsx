@@ -38,7 +38,7 @@ export const metadata: Metadata = {
 
 export default function GalleryPage() {
   return (
-    <main className="min-h-screen bg-gray-50 w-full">
+    <main className="min-h-screen bg-gray-100 flex flex-col w-full gap-8">
       <MediaGallery />
     </main>
   );

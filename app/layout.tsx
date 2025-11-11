@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { GoogleAnalytics } from "@next/third-parties/google";
 
+import '@/styles/globals.css';
+
 export const metadata: Metadata = {
     metadataBase: new URL('https://santarosa10k.com'),
     title: {

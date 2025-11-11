@@ -3,7 +3,7 @@
 
 import { useState, useEffect, useCallback, useRef } from 'react';
 import Image from 'next/image';
-import { RefreshCw, ChevronLeft, ChevronRight, Loader2, Download } from 'lucide-react';
+import { RefreshCw, Loader2, Download } from 'lucide-react';
 import { getOptimizedCloudinaryUrl } from '@/lib/cloudinary';
 import type { MediaFile, Pagination } from '@/types/media';
 
@@ -17,21 +17,30 @@ export default function MediaGallery() {
   const [cursor, setCursor] = useState<string | null>(null);
   const [visibleImages, setVisibleImages] = useState<Set<string>>(new Set());
   const observerRef = useRef<IntersectionObserver | null>(null);
+  const infiniteScrollRef = useRef<HTMLDivElement | null>(null);
 
   // Helper function to generate optimized Cloudinary URL using SDK
   const getOptimizedImageUrl = useCallback((file: MediaFile) => {
     return getOptimizedCloudinaryUrl(file.url, 300);
   }, []);
 
-  const fetchPage = useCallback(async (page: number) => {
-    setLoadingMore(page > 1);
+  const fetchPage = useCallback(async (page: number, appendResults = false) => {
+    if (appendResults) {
+      setLoadingMore(true);
+    } else {
+      setLoadingMore(page > 1);
+    }
     setError(null);
     try {
       const res = await fetch(`/api/list-media?page=${page}&cursor=${cursor || ''}`);
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || 'Failed');
 
-      setFiles(data.files);
+      if (appendResults) {
+        setFiles(prev => [...prev, ...data.files]);
+      } else {
+        setFiles(data.files);
+      }
       setPagination(data.pagination);
       setCurrentPage(page);
       setCursor(data.pagination.nextCursor);
@@ -89,11 +98,31 @@ export default function MediaGallery() {
     fetchPage(1);
   }, []);
 
-  const goToPage = (page: number) => {
-    if (page < 1 || (pagination && !pagination.hasNextPage && page > currentPage)) return;
-    fetchPage(page);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
+  // Infinite scroll observer
+  useEffect(() => {
+    const infiniteObserver = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries;
+        if (entry.isIntersecting && pagination?.hasNextPage && !loadingMore) {
+          fetchPage(currentPage + 1, true);
+        }
+      },
+      {
+        rootMargin: '100px',
+        threshold: 0.1
+      }
+    );
+
+    if (infiniteScrollRef.current) {
+      infiniteObserver.observe(infiniteScrollRef.current);
+    }
+
+    return () => {
+      if (infiniteScrollRef.current) {
+        infiniteObserver.unobserve(infiniteScrollRef.current);
+      }
+    };
+  }, [pagination, loadingMore, currentPage]);
 
   if (loading) {
     return (
@@ -114,17 +143,14 @@ export default function MediaGallery() {
   }
 
   return (
-    <div className="p-6 max-w-7xl mx-auto">
+    <div className="p-6 max-w-7xl mx-auto bg-black/5 rounded-lg shadow-sm w-full">
       <div className="flex justify-between items-center mb-8">
         <h2 className="text-3xl font-bold">Media Gallery</h2>
-        <button onClick={() => fetchPage(currentPage)} className="flex items-center gap-2 px-4 py-2 bg-gray-100 rounded-lg hover:bg-gray-200">
-          <RefreshCw className="w-4 h-4" /> Refresh
-        </button>
       </div>
 
       {/* Image Grid - 5 columns (4 rows x 5 photos) */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-12">
-        {files.slice(0, 20).map(file => {
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 mb-12 w-full">
+        {files.map(file => {
           const isVisible = visibleImages.has(file.key);
           const optimizedUrl = isVisible ? getOptimizedImageUrl(file) : '';
           
@@ -135,13 +161,13 @@ export default function MediaGallery() {
               className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden"
             >
               <div className="p-3">
-                <div className="relative max-h-[150px] overflow-hidden rounded-md mb-3 bg-gray-100">
+                <div className="relative max-h-[430px] overflow-hidden rounded-md mb-3 bg-gray-100">
                   {isVisible ? (
                     <Image
                       src={optimizedUrl}
                       alt={file.name}
-                      width={340}
-                      height={450}
+                      width={430}
+                      height={150}
                       className="w-full h-full object-cover"
                       loading="lazy"
                       placeholder="blur"
@@ -186,44 +212,8 @@ export default function MediaGallery() {
         </div>
       )}
 
-      {/* Pagination Controls */}
-      {pagination && (pagination.hasPrevPage || pagination.hasNextPage) && (
-        <div className="flex justify-center items-center gap-4 py-8">
-          <button
-            onClick={() => goToPage(currentPage - 1)}
-            disabled={!pagination.hasPrevPage}
-            className={`flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition ${
-              pagination.hasPrevPage
-                ? 'bg-blue-500 text-white hover:bg-blue-600'
-                : 'bg-gray-200 text-gray-400 cursor-not-allowed'
-            }`}
-          >
-            <ChevronLeft className="w-5 h-5" /> Previous
-          </button>
-
-          <span className="text-lg font-medium">
-            Page <span className="text-blue-600">{currentPage}</span>
-          </span>
-
-          <button
-            onClick={() => goToPage(currentPage + 1)}
-            disabled={!pagination.hasNextPage}
-            className={`flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition ${
-              pagination.hasNextPage
-                ? 'bg-blue-500 text-white hover:bg-blue-600'
-                : 'bg-gray-200 text-gray-400 cursor-not-allowed'
-            }`}
-          >
-            Next <ChevronRight className="w-5 h-5" />
-          </button>
-        </div>
-      )}
-
-      {/* Optional: Infinite Scroll Trigger */}
-      {/* Uncomment below to enable infinite scroll */}
-      {/* 
+      {/* Infinite Scroll Trigger */}
       <div ref={infiniteScrollRef} className="h-10" />
-      */}
     </div>
   );
 }
