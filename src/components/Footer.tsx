@@ -12,9 +12,8 @@ function Footer() {
             <div className="text-sm font-normal text-gray-400">
                 Desarrollado por{" "}
                 <a
-                    href="https://jodaz.dev/"
+                    href="https://jodaz.xyz"
                     target="_blank"
-                    rel="noopener noreferrer"
                     className="font-bold uppercase hover:text-red-400"
                 >
                     jodaz studio
