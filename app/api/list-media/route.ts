@@ -20,7 +20,7 @@ export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const page = parseInt(searchParams.get('page') || '1');
   const cursor = searchParams.get('cursor') || undefined;
-    console.log(cursor)
+
   try {
     const command = new ListObjectsV2Command({
       Bucket: BUCKET,
