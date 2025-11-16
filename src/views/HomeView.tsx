@@ -1,15 +1,15 @@
+"use client"
 import "./App.css";
+import "./index.css"
 import { Suspense, lazy } from "react";
-import Animation from "./components/Animation";
+import Animation from "@/components/Animation";
 
-const HeroSection = lazy(() => import("./views/HeroSection"));
-const SponsorsSection = lazy(() => import("./views/SponsorsSection"));
-// const KitSection = lazy(() => import("./views/KitSection"));
-// const PaymentInfoSection = lazy(() => import("./views/PaymentInfoSection"));
-const Footer = lazy(() => import("./views/Footer"));
-const CategoriesSection = lazy(() => import("./views/CategoriesSection"));
+const HeroSection = lazy(() => import("@/components/HeroSection"));
+const SponsorsSection = lazy(() => import("@/components/SponsorsSection"));
+const Footer = lazy(() => import("@/components/Footer"));
+const CategoriesSection = lazy(() => import("@/components/CategoriesSection"));
 
-function App() {
+export function HomeView() {
     const loader = (
         <div className="flex justify-center items-center py-12">
             <Animation name="jogging" width={120} height={120} />
@@ -41,4 +41,3 @@ function App() {
     );
 }
 
-export default App;

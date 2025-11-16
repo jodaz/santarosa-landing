@@ -1,34 +1,28 @@
 import type { Metadata } from "next";
 import { GoogleAnalytics } from "@next/third-parties/google";
 
+import '@/styles/globals.css';
+
 export const metadata: Metadata = {
-    title: "Carrera y Caminata a Santa Rosa de Lima 2025 | Carúpano",
-    description:
-        "Únete a la 1ª Carrera y Caminata a Santa Rosa de Lima el 30 de agosto en Carúpano. 10K y 5K con premios ($150 absolutos, $70-$30 por categoría). Inscríbete hasta el 27 de agosto en santarosa10k.com. ¡Vive la pasión del deporte y la comunidad!",
-    keywords: [
-        "Carrera Santa Rosa",
-        "Caminata Carúpano",
-        "Santa Rosa 10K",
-        "evento deportivo Carúpano",
-        "running Venezuela",
-        "30 agosto 2025",
-    ],
-    robots: "index, follow",
-    openGraph: {
-        title: "Carrera y Caminata a Santa Rosa de Lima - Carúpano 2025",
-        description:
-            "Corre o camina en la 1ª edición de Santa Rosa 10K. Premios en efectivo, hidratación por @aguaselitesucre y un día de unión en Carúpano. ¡Inscríbete ya!",
-        url: "https://santarosa10k.com",
-        type: "website",
-        images: [
-            {
-                url: "[URL de imagen representativa, ej. logo o foto del recorrido]",
-                width: 1200,
-                height: 630,
-                alt: "Carrera y Caminata a Santa Rosa de Lima 2025",
-            },
-        ],
+    metadataBase: new URL('https://santarosa10k.com'),
+    title: {
+        default: 'Santa Rosa 10K - Carrera y Caminata 2025 | Carúpano',
+        template: '%s | Santa Rosa 10K'
     },
+    description: 'Evento deportivo oficial en Carúpano, Venezuela. Carrera 10K y 5K con premios en efectivo.',
+    applicationName: 'Santa Rosa 10K',
+    referrer: 'origin-when-cross-origin',
+    keywords: ['carrera', 'running', 'Carúpano', 'Venezuela', 'Santa Rosa', '10K', '5K', 'atletismo'],
+    creator: 'Titanes Runners Carupano',
+    publisher: 'Santa Rosa 10K',
+    formatDetection: {
+        email: false,
+        address: false,
+        telephone: false,
+    },
+    // verification: {
+    //     google: process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION,
+    // },
 };
 
 export default function RootLayout({
