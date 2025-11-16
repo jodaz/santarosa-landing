@@ -34,7 +34,8 @@ export async function GET(request: NextRequest) {
         'Content-Disposition': disposition,
       },
     });
-  } catch (err: any) {
-    return NextResponse.json({ error: 'Error fetching from storage', details: err.message }, { status: 500 });
+  } catch (err: Error | unknown) {
+    const message = err instanceof Error ? err.message : String(err);
+    return NextResponse.json({ error: 'Error fetching from storage', details: message }, { status: 500 });
   }
 }

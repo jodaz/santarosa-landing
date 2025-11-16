@@ -65,7 +65,8 @@ export async function GET(request: NextRequest) {
         nextCursor,
         total: response.KeyCount
     } });
-  } catch (error: any) {
-    return NextResponse.json({ error: 'Failed to list media', details: error.message }, { status: 500 });
+  } catch (error: Error | unknown) {
+    const message = error instanceof Error ? error.message : String(error);
+    return NextResponse.json({ error: 'Failed to list media', details: message }, { status: 500 });
   }
 }

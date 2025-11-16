@@ -3,7 +3,7 @@
 
 import { useState, useEffect, useCallback, useRef } from 'react';
 import Image from 'next/image';
-import { RefreshCw, Loader2, Download } from 'lucide-react';
+import {  Loader2, Download } from 'lucide-react';
 import { getOptimizedCloudinaryUrl } from '@/lib/cloudinary';
 import type { MediaFile, Pagination } from '@/types/media';
 
@@ -44,8 +44,8 @@ export default function MediaGallery() {
       setPagination(data.pagination);
       setCurrentPage(page);
       setCursor(data.pagination.nextCursor);
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err: Error | unknown) {
+      setError(err instanceof Error ? err.message : String(err));
     } finally {
       setLoading(false);
       setLoadingMore(false);
@@ -96,10 +96,12 @@ export default function MediaGallery() {
 
   useEffect(() => {
     fetchPage(1);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Infinite scroll observer
   useEffect(() => {
+    const pointer = infiniteScrollRef.current;
     const infiniteObserver = new IntersectionObserver(
       (entries) => {
         const [entry] = entries;
@@ -113,15 +115,16 @@ export default function MediaGallery() {
       }
     );
 
-    if (infiniteScrollRef.current) {
-      infiniteObserver.observe(infiniteScrollRef.current);
+    if (pointer) {
+      infiniteObserver.observe(pointer);
     }
 
     return () => {
-      if (infiniteScrollRef.current) {
-        infiniteObserver.unobserve(infiniteScrollRef.current);
+      if (pointer) {
+        infiniteObserver.unobserve(pointer);
       }
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pagination, loadingMore, currentPage]);
 
   if (loading) {
