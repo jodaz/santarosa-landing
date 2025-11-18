@@ -13,6 +13,11 @@ export const cld = new Cloudinary({
 
 // Helper to get optimized Cloudinary fetch URL
 export const getOptimizedCloudinaryUrl = (sourceUrl: string, width = 300): string => {
+  // Return source URL in development, optimized URL in production
+  if (process.env.NODE_ENV === 'development') {
+    return sourceUrl;
+  }
+
   const decodedUrl = decodeURIComponent(sourceUrl);
   
   const cloudName = cld.getConfig().cloud?.cloudName || '';
