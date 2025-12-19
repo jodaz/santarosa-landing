@@ -44,10 +44,10 @@ export const Gallery = () => {
               key={image.id}
               className="relative aspect-square overflow-hidden rounded-lg cursor-pointer group animate-fade-in"
               style={{ animationDelay: `${(index % 20) * 0.03}s` }}
-              onClick={() => setSelectedImage(image.src)}
+              onClick={() => setSelectedImage(image.src.src)}
             >
               <img
-                src={image.src}
+                src={image.src.src}
                 alt={image.alt}
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 loading="lazy"
