@@ -6,7 +6,7 @@ function Registrations() {
     return (
         <section
             className="py-12 px-8 rounded-lg mb-8 w-full flex flex-col gap-10"
-            id="registrations"
+            id="inscripciones"
         >
             <h2 className="font-edo text-5xl md:text-6xl font-bold mb-12 text-black text-center">
                 ¡NUESTRA CARRERA HA FINALIZADO!
