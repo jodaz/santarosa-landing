@@ -1,4 +1,4 @@
-import { Facebook, Instagram, Mail, MapPin, Phone } from "lucide-react";
+import { Instagram, Mail, MapPin } from "lucide-react";
 
 function Footer() {
   const navLinks = [
@@ -16,19 +16,12 @@ function Footer() {
             {/* Brand */}
             <div>
                 <h3 className="text-2xl font-black mb-4">
-                Santa Rosa 10K
+                Carrera y Caminata Santa Rosa de Lima 2025
                 </h3>
                 <p className="text-white/80 mb-4">
-                II Carrera Popular Santa Rosa de Lima 2025. Un evento deportivo que une a la comunidad de Guamasa y La Laguna.
+                Carrera y Caminata Santa Rosa de Lima 2025. Un evento deportivo que une a la comunidad de Carúpano y sus alrededores.
                 </p>
                 <div className="flex gap-4">
-                <a 
-                    href="#" 
-                    className="p-2 bg-white/20 hover:bg-white/30 rounded-full transition-colors"
-                    aria-label="Facebook"
-                >
-                    <Facebook className="w-5 h-5" />
-                </a>
                 <a 
                     href="#" 
                     className="p-2 bg-white/20 hover:bg-white/30 rounded-full transition-colors"
@@ -63,7 +56,7 @@ function Footer() {
                 <li className="flex items-start gap-3">
                     <MapPin className="w-5 h-5 flex-shrink-0 mt-0.5" />
                     <span className="text-white/80">
-                    Guamasa, San Cristóbal de La Laguna, Tenerife
+                    Carupano, Edo. Sucre, Venezuela
                     </span>
                 </li>
                 <li className="flex items-center gap-3">
@@ -72,12 +65,7 @@ function Footer() {
                     info@santarosa10k.com
                     </a>
                 </li>
-                <li className="flex items-center gap-3">
-                    <Phone className="w-5 h-5 flex-shrink-0" />
-                    <a href="tel:+34123456789" className="text-white/80 hover:text-white transition-colors">
-                    +34 123 456 789
-                    </a>
-                </li>
+                
                 </ul>
             </div>
             </div>

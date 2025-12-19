@@ -6,6 +6,7 @@ import MediaGallery from "@/components/MediaGallery";
 import { Navigation } from "@/components/Navigation";
 import { RaceInfo } from "@/components/RaceInfo";
 import CategoriesSection from "@/components/CategoriesSection";
+import Registrations from "@/components/Registrations";
 
 export function HomeView() {
     return (
@@ -24,6 +25,7 @@ export function HomeView() {
             </Suspense> */}
             <RaceInfo />
             <CategoriesSection />
+            <Registrations />
             <MediaGallery previewMode={true} />
             <Footer />
         </div>

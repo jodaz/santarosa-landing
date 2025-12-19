@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState } from "react";
 
 const categories = ["Carrera 10K", "Caminata 5K"] as const;

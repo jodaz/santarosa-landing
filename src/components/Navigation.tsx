@@ -8,12 +8,12 @@ export const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const navItems = [
-    { name: "Inicio", href: "#hero" },
-    { name: "Inscripciones", href: "#inscripciones" },
-    { name: "Recorrido", href: "#recorrido" },
-    { name: "Clasificaciones", href: "#clasificaciones" },
-    { name: "Galería", href: "#galeria" },
-    { name: "Contacto", href: "#contacto" },
+    { name: "Inicio", href: "/" },
+    { name: "Inscripciones", href: "/#inscripciones" },
+    { name: "Recorrido", href: "/#recorrido" },
+    { name: "Categorías", href: "/#categorias" },
+    { name: "Galería", href: "/#galeria" },
+    { name: "Contacto", href: "/#contacto" },
   ];
 
   return (
