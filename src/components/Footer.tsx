@@ -1,14 +1,15 @@
 import { Instagram, Mail, MapPin } from "lucide-react";
 
 function Footer() {
-  const navLinks = [
-    { name: "Inicio", href: "#hero" },
-    { name: "Inscripciones", href: "#inscripciones" },
-    { name: "Recorrido", href: "#recorrido" },
-    { name: "Clasificaciones", href: "#clasificaciones" },
-    { name: "Galería", href: "#galeria" },
-    { name: "Contacto", href: "#contacto" },
-  ];
+    const navLinks = [
+        { name: "Inicio", href: "#hero" },
+        { name: "Inscripciones", href: "#inscripciones" },
+        { name: "Recorrido", href: "#recorrido" },
+        { name: "Clasificaciones", href: "#clasificaciones" },
+        { name: "Galería", href: "/gallery" },
+        { name: "Contacto", href: "#contacto" },
+    ];
+    
     return (
         <footer id="contacto" className="bg-gradient-to-br from-primary to-accent text-white">
             <div className="container mx-auto px-4 py-12">

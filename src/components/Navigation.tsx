@@ -12,7 +12,7 @@ export const Navigation = () => {
     { name: "Inscripciones", href: "/#inscripciones" },
     { name: "Recorrido", href: "/#recorrido" },
     { name: "Categorías", href: "/#categorias" },
-    { name: "Galería", href: "/#galeria" },
+    { name: "Galería", href: "/#galerry" },
     { name: "Contacto", href: "/#contacto" },
   ];
 
