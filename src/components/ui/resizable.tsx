@@ -1,12 +1,8 @@
 import { GripVertical } from "lucide-react";
-// @ts-ignore
-import * as ResizablePrimitive from "react-resizable-panels";
+// @ts-expect-error: react-resizable-panels types may not be fully compatible
+import { PanelGroup, Panel, PanelResizeHandle } from "react-resizable-panels";
 
 import { cn } from "@/lib/utils";
-
-const PanelGroup = (ResizablePrimitive as any).PanelGroup;
-const Panel = (ResizablePrimitive as any).Panel;
-const PanelResizeHandle = (ResizablePrimitive as any).PanelResizeHandle;
 
 const ResizablePanelGroup = ({ className, ...props }: React.ComponentProps<typeof PanelGroup>) => (
   <PanelGroup
