@@ -13,7 +13,7 @@ const s3Client = new S3Client({
 });
 
 const BUCKET = process.env.MEGA_S4_BUCKET!;
-const FOLDER = 'santarosa10k/';
+const FOLDER = 'santarosaop/gallery';
 const PAGE_SIZE = 9;
 
 export async function GET(request: NextRequest) {
