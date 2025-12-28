@@ -158,14 +158,31 @@ export default function MediaGallery({ previewMode = false }: MediaGalleryProps)
   }
 
   return (
-    <section id="galeria" className="py-20 bg-background">
-      <div className="container mx-auto px-4">
+    <section id="galeria" className="py-20 bg-blue-900 relative overflow-hidden">
+      {/* Decorative yellow scribbles */}
+      <div className="absolute top-0 left-0 w-32 h-32 opacity-20">
+        <svg viewBox="0 0 100 100" className="w-full h-full text-yellow-500">
+          <path d="M10,20 Q30,10 50,20 T90,20" stroke="currentColor" fill="none" strokeWidth="2" />
+          <path d="M15,40 Q35,30 55,40 T95,40" stroke="currentColor" fill="none" strokeWidth="2" />
+        </svg>
+      </div>
+      <div className="absolute bottom-0 right-0 w-32 h-32 opacity-20">
+        <svg viewBox="0 0 100 100" className="w-full h-full text-yellow-500">
+          <path d="M10,80 Q30,90 50,80 T90,80" stroke="currentColor" fill="none" strokeWidth="2" />
+          <path d="M15,60 Q35,70 55,60 T95,60" stroke="currentColor" fill="none" strokeWidth="2" />
+        </svg>
+      </div>
+      <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-black text-foreground mb-4">
-            Galería de Fotos
+          <h2 className="text-4xl md:text-5xl font-edo font-bold text-white mb-4">
+            GALERÍA
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Revive los mejores momentos de nuestras carreras
+          <p className="text-lg text-white/90 max-w-2xl mx-auto">
+            ¡Revive los mejores momentos! 📸
+            <br />
+            Fotos llenas de energía, sonrisas y esfuerzo de nuestra comunidad runner.
+            <br />
+            Haz clic para explorar la galería completa y compartir tus recuerdos con #SantaRosa10K.
           </p>
         </div>
 
@@ -220,9 +237,9 @@ export default function MediaGallery({ previewMode = false }: MediaGalleryProps)
           <div className="flex justify-center mt-8">
             <Link
               href="/gallery"
-              className="px-8 py-3 bg-primary text-white font-semibold rounded-lg hover:bg-primary/90 transition-colors shadow-lg hover:shadow-xl"
+              className="px-8 py-3 bg-yellow-500 text-black font-edo font-bold rounded-lg hover:bg-yellow-400 transition-colors shadow-lg hover:shadow-xl text-xl"
             >
-              Ver más
+              ver mas
             </Link>
           </div>
         )}
