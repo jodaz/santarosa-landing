@@ -1,48 +1,44 @@
 function CategoriesSection() {
     return (
-        <section id="categorias" className="py-20 bg-blue-900 relative overflow-hidden">
-            <div className="container mx-auto px-4 relative z-10">
-                <div className="max-w-4xl mx-auto">
-                    <h2 className="text-4xl md:text-5xl font-edo font-bold text-white mb-12">
-                        CATEGORÍAS
-                    </h2>
-                    <div className="bg-white/10 rounded-lg p-8">
-                        <p className="text-white text-lg mb-6">
-                            ¡Hay un lugar para todos! Participa en:
-                        </p>
-                        <ul className="text-xl space-y-4 text-white">
-                            <li className="flex items-center gap-3">
-                                <span className="text-yellow-500 font-edo font-bold">Juvenil</span>
-                                <span>(16-19)</span>
-                            </li>
-                            <li className="flex items-center gap-3">
-                                <span className="text-yellow-500 font-edo font-bold">Libre</span>
-                                <span>(20-29)</span>
-                            </li>
-                            <li className="flex items-center gap-3">
-                                <span className="text-yellow-500 font-edo font-bold">Submáster</span>
-                                <span>(30-39)</span>
-                            </li>
-                            <li className="flex items-center gap-3">
-                                <span className="text-yellow-500 font-edo font-bold">Máster A</span>
-                                <span>(40-49)</span>
-                            </li>
-                            <li className="flex items-center gap-3">
-                                <span className="text-yellow-500 font-edo font-bold">Máster B</span>
-                                <span>(50-59)</span>
-                            </li>
-                            <li className="flex items-center gap-3">
-                                <span className="text-yellow-500 font-edo font-bold">Máster C</span>
-                                <span>(60+)</span>
-                            </li>
-                        </ul>
-                        <p className="text-white text-lg mt-8 font-edo">
-                            ¡Corre por tu categoría y brilla!
-                        </p>
-                    </div>
-                </div>
+        <div id="categorias">
+            <h2 className="text-4xl md:text-5xl font-edo font-bold text-white mb-8">
+                CATEGORÍAS
+            </h2>
+            <div className="bg-white/10 rounded-lg p-8">
+                <p className="text-white text-lg mb-6">
+                    ¡Hay un lugar para todos! Participa en:
+                </p>
+                <ul className="text-xl space-y-4 text-white">
+                    <li className="flex items-center gap-3">
+                        <span className="text-yellow-500 font-edo font-bold">Juvenil</span>
+                        <span>(16-19)</span>
+                    </li>
+                    <li className="flex items-center gap-3">
+                        <span className="text-yellow-500 font-edo font-bold">Libre</span>
+                        <span>(20-29)</span>
+                    </li>
+                    <li className="flex items-center gap-3">
+                        <span className="text-yellow-500 font-edo font-bold">Submáster</span>
+                        <span>(30-39)</span>
+                    </li>
+                    <li className="flex items-center gap-3">
+                        <span className="text-yellow-500 font-edo font-bold">Máster A</span>
+                        <span>(40-49)</span>
+                    </li>
+                    <li className="flex items-center gap-3">
+                        <span className="text-yellow-500 font-edo font-bold">Máster B</span>
+                        <span>(50-59)</span>
+                    </li>
+                    <li className="flex items-center gap-3">
+                        <span className="text-yellow-500 font-edo font-bold">Máster C</span>
+                        <span>(60+)</span>
+                    </li>
+                </ul>
+                <p className="text-white text-lg mt-8 font-edo">
+                    ¡Corre por tu categoría y brilla!
+                </p>
             </div>
-        </section>
+        </div>
     );
 }
 

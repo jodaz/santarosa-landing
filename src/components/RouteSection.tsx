@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function RouteSection() {
   return (
-    <section id="ruta" className="py-20 bg-blue-900 relative overflow-hidden">
+    <section id="ruta" className="py-20 bg-blue-900 relative overflow-hidden ">
       {/* Decorative yellow scribbles */}
       <div className="absolute top-0 left-0 w-32 h-32 opacity-20">
         <svg viewBox="0 0 100 100" className="w-full h-full text-yellow-500">
@@ -13,8 +13,8 @@ export default function RouteSection() {
         </svg>
       </div>
 
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="max-w-6xl mx-auto">
+      <div className="relative z-10 container">
+        <div className="max-w-6xl">
           <h2 className="text-4xl md:text-5xl font-edo font-bold text-white mb-8">
             LA RUTA
           </h2>
@@ -55,7 +55,7 @@ export default function RouteSection() {
               </p>
             </div>
             
-            <div className="bg-white/10 rounded-lg p-4">
+            <div className="bg-white/10 rounded-lg p-4 w-full">
               <Image
                 src={Ruta}
                 alt="Mapa de la ruta"

@@ -1,5 +1,5 @@
 import Centauros from "../assets/logos/centauros.png";
-import SantaRosa from "../assets/logos/logosantarosa_realze.png";
+import SantaRosa from "../assets/logos/santarosadelima.png";
 import Alcaldia from "../assets/logos/alcaldia2.png";
 import Iandeber from "../assets/logos/ianderber.webp";
 import Titanes from "../assets/logos/TITANES23.png";

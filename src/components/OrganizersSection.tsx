@@ -25,7 +25,7 @@ function OrganizersSection() {
                 <div className="flex flex-wrap justify-center items-center gap-16 md:gap-32">
                     {organizers.map((organizer, index) => (
                         <div key={index} className="flex flex-col items-center">
-                            <div className="w-48 h-48 bg-gray-100 rounded-lg flex items-center justify-center mb-4 p-4">
+                            <div className="w-48 h-48 rounded-lg flex items-center justify-center mb-4 p-4">
                                 <Image
                                     src={organizer.logo}
                                     alt={organizer.name}

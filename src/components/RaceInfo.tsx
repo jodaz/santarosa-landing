@@ -17,7 +17,7 @@ export const RaceInfo = () => {
       description: "¡Asegura tu lugar! Inscripciones abiertas en santarosa10k.com.\n\nPreventa limitada: Carrera 1400 BS | Caminata 700 BS.\n\n¡No te quedes fuera, los cupos vuelan! 🚀",
       color: "text-secondary",
       bgColor: "bg-secondary/10",
-      link: "https://santarosa10k.com",
+      link: "https://santarosa10k.com/inscripciones",
     },
     {
       icon: Route,
@@ -30,10 +30,10 @@ export const RaceInfo = () => {
     {
       icon: Package,
       title: "Expo Run y Entrega de Kits",
-      description: "🗓️ Viernes 29 de agosto | 10 AM - 5 PM\n\n📍 Concha Acústica Luis Mariano Rivera\n\nRecoge tu kit, conoce a los patrocinadores y vive la emoción previa. ¡Te esperamos!",
+      description: "🗓️ Viernes 29 de agosto | 10 AM - 5 PM\n\n📍 Concha Acústica Luis Mariano Rivera\n\nRecoge tu kit, conoce a los patrocinadores y vive la emoción previa.\n¡Te esperamos!",
       color: "text-secondary",
       bgColor: "bg-secondary/10",
-      link: "#",
+      link: "#kit",
     },
   ];
 

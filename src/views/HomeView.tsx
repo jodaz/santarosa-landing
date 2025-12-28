@@ -27,12 +27,21 @@ export function HomeView() {
             <SponsorsSection />
             {/* Section 5: La Ruta */}
             <RouteSection />
-            {/* Section 6: Premiación */}
-            <AwardsSection />
-            {/* Section 7: Categorías */}
-            <CategoriesSection />
-            {/* Section 8: Nuestro Kit */}
+            {/* Section 6: Premiación & Section 7: Categorías */}
+            <section className="bg-blue-900 relative overflow-hidden">
+                <div className="container mx-auto px-4 py-20 relative z-10">
+                    <div className="flex flex-col md:flex-row gap-8 w-full">
+                        <div className="flex-1">
+                            <AwardsSection />
+                        </div>
+                        <div className="flex-1">
+                            <CategoriesSection />
+                        </div>
+                    </div>
+                </div>
+            </section>
             <KitSection />
+
             {/* Section 9: Organizadores */}
             <OrganizersSection />
             {/* Section 10: Galería */}

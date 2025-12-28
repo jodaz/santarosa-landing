@@ -19,8 +19,8 @@ function KitSection() {
                 </svg>
             </div>
 
-            <div className="container mx-auto px-4 relative z-10">
-                <div className="max-w-4xl mx-auto">
+            <div className="container relative z-10">
+                <div className="max-w-4xl">
                     <h2 className="text-4xl md:text-5xl font-edo font-bold text-white mb-12">
                         NUESTRO KIT
                     </h2>

@@ -21,7 +21,7 @@ export const Hero = () => {
           {/* Badge */}
           <div className="inline-block mb-6 px-6 py-2 bg-white/20 backdrop-blur-sm rounded-full border border-white/30 animate-fade-in">
             <span className="text-sm font-semibold uppercase tracking-wide">
-              II Edición 2025
+              I Edición 2025
             </span>
           </div>
 
