@@ -1,65 +1,44 @@
-import Ruta from "@/assets/images/ruta.png";
-import Image from "next/image";
-
 function CategoriesSection() {
     return (
-        <section className="flex flex-col md:flex-row gap-8 py-12 p-8 bg-yellow-500 w-full">
-            <div className="flex-1  text-black rounded-lg p-2 md:p-6">
-                <h2 className="font-edo font-bold text-5xl md:text-6xl mb-2">
-                    CATEGORÍAS
-                </h2>
-                <ul className="text-2xl space-y-4 mt-6 ">
-                    <li>
-                        <strong className="font-edo text-2xl">Juvenil</strong>{" "}
-                        16 a 19 años
+        <div id="categorias">
+            <h2 className="text-4xl md:text-5xl font-edo font-bold text-white mb-8">
+                CATEGORÍAS
+            </h2>
+            <div className="bg-white/10 rounded-lg p-8">
+                <p className="text-white text-lg mb-6">
+                    ¡Hay un lugar para todos! Participa en:
+                </p>
+                <ul className="text-xl space-y-4 text-white">
+                    <li className="flex items-center gap-3">
+                        <span className="text-yellow-500 font-edo font-bold">Juvenil</span>
+                        <span>(16-19)</span>
                     </li>
-                    <li>
-                        <strong className="font-edo text-2xl">Libre</strong> 20
-                        a 29 años
+                    <li className="flex items-center gap-3">
+                        <span className="text-yellow-500 font-edo font-bold">Libre</span>
+                        <span>(20-29)</span>
                     </li>
-                    <li>
-                        <strong className="font-edo text-2xl">Submaster</strong>{" "}
-                        30 a 39 años
+                    <li className="flex items-center gap-3">
+                        <span className="text-yellow-500 font-edo font-bold">Submáster</span>
+                        <span>(30-39)</span>
                     </li>
-                    <li>
-                        <strong className="font-edo text-2xl">Máster A</strong>{" "}
-                        40 a 49 años
+                    <li className="flex items-center gap-3">
+                        <span className="text-yellow-500 font-edo font-bold">Máster A</span>
+                        <span>(40-49)</span>
                     </li>
-                    <li>
-                        <strong className="font-edo text-2xl">Máster B</strong>{" "}
-                        50 a 59 años
+                    <li className="flex items-center gap-3">
+                        <span className="text-yellow-500 font-edo font-bold">Máster B</span>
+                        <span>(50-59)</span>
                     </li>
-                    <li>
-                        <strong className="font-edo text-2xl">Máster C</strong>{" "}
-                        60 años en adelante
-                    </li>
-                </ul>
-            </div>
-            <div className="flex-1 flex flex-col items-center">
-                <h2 className="font-edo font-bold text-5xl text-white md:text-6xl mb-8 text-left w-full">
-                    RUTA
-                </h2>
-                <ul className="text-xl space-y-4 mt-6 text-left w-full mb-4 font-bold">
-                    <li className="">
-                        <strong className="font-edo text-2xl">
-                            Distancia total
-                        </strong>{" "}
-                        10.000 metros
-                    </li>
-                    <li>
-                        <strong className="font-edo text-2xl">
-                            Distancia caminata
-                        </strong>{" "}
-                        5.000 metros
+                    <li className="flex items-center gap-3">
+                        <span className="text-yellow-500 font-edo font-bold">Máster C</span>
+                        <span>(60+)</span>
                     </li>
                 </ul>
-                <Image
-                    src={Ruta}
-                    alt="Ruta"
-                    className="rounded-lg w-full object-contain bg-transparent rounded mb-2"
-                />
+                <p className="text-white text-lg mt-8 font-edo">
+                    ¡Corre por tu categoría y brilla!
+                </p>
             </div>
-        </section>
+        </div>
     );
 }
 

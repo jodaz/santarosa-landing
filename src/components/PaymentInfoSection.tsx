@@ -1,8 +1,8 @@
+'use client';
+
 import React, { useState } from "react";
 
-const categories = ["Carrera 10K", "Caminata 5K"] as const;
-
-type Category = (typeof categories)[number];
+type Category = "Carrera 10K" | "Caminata 5K";
 
 const categoryForms: Record<Category, string | null> = {
     "Carrera 10K":

@@ -3,11 +3,16 @@
 
 import { useState, useEffect, useCallback, useRef } from 'react';
 import Image from 'next/image';
-import {  Loader2, Download } from 'lucide-react';
+import { Loader2, X, Download } from 'lucide-react';
 import { getOptimizedCloudinaryUrl } from '@/lib/cloudinary';
 import type { MediaFile, Pagination } from '@/types/media';
+import Link from 'next/link';
 
-export default function MediaGallery() {
+interface MediaGalleryProps {
+  previewMode?: boolean;
+}
+
+export default function MediaGallery({ previewMode = false }: MediaGalleryProps) {
   const [files, setFiles] = useState<MediaFile[]>([]);
   const [pagination, setPagination] = useState<Pagination | null>(null);
   const [loading, setLoading] = useState(true);
@@ -16,6 +21,8 @@ export default function MediaGallery() {
   const [currentPage, setCurrentPage] = useState(1);
   const [cursor, setCursor] = useState<string | null>(null);
   const [visibleImages, setVisibleImages] = useState<Set<string>>(new Set());
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [selectedFile, setSelectedFile] = useState<MediaFile | null>(null);
   const observerRef = useRef<IntersectionObserver | null>(null);
   const infiniteScrollRef = useRef<HTMLDivElement | null>(null);
 
@@ -99,8 +106,10 @@ export default function MediaGallery() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // Infinite scroll observer
+  // Infinite scroll observer - disabled in preview mode
   useEffect(() => {
+    if (previewMode) return; // Don't setup infinite scroll in preview mode
+    
     const pointer = infiniteScrollRef.current;
     const infiniteObserver = new IntersectionObserver(
       (entries) => {
@@ -127,11 +136,14 @@ export default function MediaGallery() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pagination, loadingMore, currentPage]);
 
+  // Get display files - limit to 9 in preview mode
+  const displayFiles = previewMode ? files.slice(0, 9) : files;
+
   if (loading) {
     return (
       <div className="flex justify-center p-12">
-        <Loader2 className="w-8 h-8 animate-spin text-blue-500" />
-        <span className="ml-3">Loading gallery...</span>
+        <Loader2 className="w-8 h-8 animate-spin text-primary" />
+        <span className="ml-3">Cargando galería...</span>
       </div>
     );
   }
@@ -140,83 +152,149 @@ export default function MediaGallery() {
     return (
       <div className="text-center p-12 text-red-500">
         <p>Error: {error}</p>
-        <button onClick={() => fetchPage(1)} className="mt-4 px-6 py-2 bg-blue-500 text-white rounded">Retry</button>
+        <button onClick={() => fetchPage(1)} className="mt-4 px-6 py-2 bg-primary text-white rounded">Reintentar</button>
       </div>
     );
   }
 
   return (
-    <div className="p-6 max-w-7xl mx-auto bg-black/5 rounded-lg shadow-sm w-full">
-      <div className="flex justify-between items-center mb-8">
-        <h2 className="text-3xl font-bold">Media Gallery</h2>
+    <section id="galeria" className="py-20 bg-blue-900 relative overflow-hidden">
+      {/* Decorative yellow scribbles */}
+      <div className="absolute top-0 left-0 w-32 h-32 opacity-20">
+        <svg viewBox="0 0 100 100" className="w-full h-full text-yellow-500">
+          <path d="M10,20 Q30,10 50,20 T90,20" stroke="currentColor" fill="none" strokeWidth="2" />
+          <path d="M15,40 Q35,30 55,40 T95,40" stroke="currentColor" fill="none" strokeWidth="2" />
+        </svg>
       </div>
+      <div className="absolute bottom-0 right-0 w-32 h-32 opacity-20">
+        <svg viewBox="0 0 100 100" className="w-full h-full text-yellow-500">
+          <path d="M10,80 Q30,90 50,80 T90,80" stroke="currentColor" fill="none" strokeWidth="2" />
+          <path d="M15,60 Q35,70 55,60 T95,60" stroke="currentColor" fill="none" strokeWidth="2" />
+        </svg>
+      </div>
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="text-center mb-12">
+          <h2 className="text-4xl md:text-5xl font-edo font-bold text-white mb-4">
+            GALERÍA
+          </h2>
+          <p className="text-lg text-white/90 max-w-2xl mx-auto">
+            ¡Revive los mejores momentos! 📸
+            <br />
+            Fotos llenas de energía, sonrisas y esfuerzo de nuestra comunidad runner.
+            <br />
+            Haz clic para explorar la galería completa y compartir tus recuerdos con #SantaRosa10K.
+          </p>
+        </div>
 
-      {/* Image Grid - 5 columns (4 rows x 5 photos) */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 mb-12 w-full">
-        {files.map(file => {
-          const isVisible = visibleImages.has(file.key);
-          const optimizedUrl = isVisible ? getOptimizedImageUrl(file) : '';
-          
-          return (
-            <div
-              key={file.key}
-              data-key={file.key}
-              className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden"
-            >
-              <div className="p-3">
-                <div className="relative max-h-[430px] overflow-hidden rounded-md mb-3 bg-gray-100">
+        {/* Gallery Grid - 5 columns */}
+        <div className="relative">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
+            {displayFiles.map((file, index) => {
+              const isVisible = visibleImages.has(file.key);
+              const optimizedUrl = isVisible ? getOptimizedImageUrl(file) : '';
+              
+              return (
+                <div
+                  key={file.key}
+                  data-key={file.key}
+                  className="relative aspect-square overflow-hidden rounded-lg cursor-pointer group animate-fade-in"
+                  style={{ animationDelay: `${(index % 20) * 0.03}s` }}
+                  onClick={() => {
+                    setSelectedImage(optimizedUrl);
+                    setSelectedFile(file);
+                  }}
+                >
                   {isVisible ? (
                     <Image
                       src={optimizedUrl}
                       alt={file.name}
-                      width={430}
-                      height={150}
-                      className="w-full h-full object-cover"
+                      width={300}
+                      height={300}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                       loading="lazy"
                       placeholder="blur"
                       blurDataURL="data:image/webp;base64,UklGRiIAAABXRUJQVlA4IBYAAAAwAQCdASoBAAEAAQAA"
                     />
                   ) : (
-                    <div className="w-full h-[150px] flex items-center justify-center">
+                    <div className="w-full h-full flex items-center justify-center bg-gray-100">
                       <Loader2 className="w-6 h-6 animate-spin text-gray-400" />
                     </div>
                   )}
+                  <div className="absolute inset-0 bg-gradient-to-t from-primary/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
-                <div className="flex items-center justify-between">
-                  <h3 className="text-sm font-medium text-gray-900 truncate flex-1 mr-2" title={file.name}>
-                    {file.name}
-                  </h3>
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      const link = document.createElement('a');
-                      // Prefer the proxied download URL (same-origin) which forces attachment
-                      link.href = file.downloadUrl || file.url;
-                      // The server sets Content-Disposition; the download attribute is a hint for same-origin
-                      link.download = file.name;
-                      link.click();
-                    }}
-                    className="flex-shrink-0 p-1.5 text-gray-500 hover:text-blue-600 hover:bg-blue-50 rounded transition-colors"
-                    title="Download"
-                  >
-                    <Download className="w-4 h-4" />
-                  </button>
-                </div>
-              </div>
-            </div>
-          );
-        })}
-      </div>
+              );
+            })}
+          </div>
 
-      {/* Loading more */}
-      {loadingMore && (
-        <div className="flex justify-center py-8">
-          <Loader2 className="w-6 h-6 animate-spin" />
+          {/* Preview Mode Gradient Overlay */}
+          {previewMode && (
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background pointer-events-none" />
+          )}
         </div>
-      )}
 
-      {/* Infinite Scroll Trigger */}
-      <div ref={infiniteScrollRef} className="h-10" />
-    </div>
+        {/* Preview Mode "Ver más" Button */}
+        {previewMode && (
+          <div className="flex justify-center mt-8">
+            <Link
+              href="/gallery"
+              className="px-8 py-3 bg-yellow-500 text-black font-edo font-bold rounded-lg hover:bg-yellow-400 transition-colors shadow-lg hover:shadow-xl text-xl"
+            >
+              ver mas
+            </Link>
+          </div>
+        )}
+
+        {/* Loading more - only show in full mode */}
+        {!previewMode && loadingMore && (
+          <div className="flex justify-center py-8">
+            <Loader2 className="w-6 h-6 animate-spin text-primary" />
+          </div>
+        )}
+
+        {/* Infinite Scroll Trigger - only in full mode */}
+        {!previewMode && <div ref={infiniteScrollRef} className="h-10" />}
+
+        {/* Lightbox Modal */}
+        {selectedImage && selectedFile && (
+          <div
+            className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-4 animate-fade-in"
+            onClick={() => {
+              setSelectedImage(null);
+              setSelectedFile(null);
+            }}
+          >
+            <button
+              onClick={() => {
+                setSelectedImage(null);
+                setSelectedFile(null);
+              }}
+              className="absolute top-4 right-4 p-2 bg-white/10 hover:bg-white/20 rounded-full transition-colors"
+              aria-label="Cerrar"
+            >
+              <X className="w-6 h-6 text-white" />
+            </button>
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                const link = document.createElement('a');
+                link.href = `/api/download-media?key=${encodeURIComponent(selectedFile.key)}`;
+                link.download = selectedFile.name;
+                link.click();
+              }}
+              className="absolute top-4 right-16 p-2 bg-white/10 hover:bg-white/20 rounded-full transition-colors"
+              aria-label="Descargar"
+            >
+              <Download className="w-6 h-6 text-white" />
+            </button>
+            <img
+              src={selectedImage}
+              alt="Vista ampliada"
+              className="max-w-full max-h-full object-contain animate-scale-in"
+              onClick={(e) => e.stopPropagation()}
+            />
+          </div>
+        )}
+      </div>
+    </section>
   );
 }

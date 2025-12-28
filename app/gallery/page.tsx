@@ -1,6 +1,6 @@
 // app/gallery/page.tsx
 import type { Metadata } from 'next';
-import MediaGallery from '@/components/MediaGallery';
+import { GalleryView } from '@/views/GalleryView';
 
 export const metadata: Metadata = {
   title: 'Galería de Fotos - Carrera Santa Rosa 2025 | Carúpano',
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
 export default function GalleryPage() {
   return (
     <main className="min-h-screen bg-gray-100 flex flex-col w-full gap-8">
-      <MediaGallery />
+      <GalleryView />
     </main>
   );
 }
