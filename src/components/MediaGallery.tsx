@@ -28,7 +28,7 @@ export default function MediaGallery({ previewMode = false }: MediaGalleryProps)
 
   // Helper function to generate optimized Cloudinary URL using SDK
   const getOptimizedImageUrl = useCallback((file: MediaFile) => {
-    return getOptimizedCloudinaryUrl(file.url, 300);
+    return getOptimizedCloudinaryUrl(file.url, 400);
   }, []);
 
   const fetchPage = useCallback(async (page: number, appendResults = false) => {
@@ -287,7 +287,7 @@ export default function MediaGallery({ previewMode = false }: MediaGalleryProps)
               <Download className="w-6 h-6 text-white" />
             </button>
             <img
-              src={selectedImage}
+              src={selectedFile.url}
               alt="Vista ampliada"
               className="max-w-full max-h-full object-contain animate-scale-in"
               onClick={(e) => e.stopPropagation()}
