@@ -218,7 +218,7 @@ export default function MediaGallery({ previewMode = false }: MediaGalleryProps)
                       <Loader2 className="w-6 h-6 animate-spin text-gray-400" />
                     </div>
                   )}
-                  <div className="absolute inset-0 bg-gradient-to-t from-primary/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-gray-900/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
               );
             })}
@@ -235,9 +235,9 @@ export default function MediaGallery({ previewMode = false }: MediaGalleryProps)
           <div className="flex justify-center mt-8">
             <Link
               href="/gallery"
-              className="px-8 py-3 bg-yellow-500 text-black font-permanent font-bold rounded-lg hover:bg-yellow-400 transition-colors shadow-lg hover:shadow-xl text-xl"
+              className="px-8 py-3 bg-yellow-500 text-black font-poppins rounded-lg hover:bg-yellow-400 transition-colors shadow-lg hover:shadow-xl text-sm"
             >
-              ver mas
+              Ver más
             </Link>
           </div>
         )}
