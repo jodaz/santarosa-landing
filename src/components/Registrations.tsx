@@ -8,7 +8,7 @@ function Registrations() {
             className="py-12 px-8 rounded-lg mb-8 w-full flex flex-col gap-10"
             id="inscripciones"
         >
-            <h2 className="font-edo text-5xl md:text-6xl font-bold mb-12 text-black text-center">
+            <h2 className="font-permanent text-5xl md:text-6xl font-bold mb-12 text-black text-center">
                 ¡NUESTRA CARRERA HA FINALIZADO!
             </h2>
             <div className="flex flex-col items-center text-center gap-6">

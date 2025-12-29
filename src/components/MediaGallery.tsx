@@ -174,7 +174,7 @@ export default function MediaGallery({ previewMode = false }: MediaGalleryProps)
       </div>
       <div className="container mx-auto px-4 relative">
         <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-edo font-bold text-white mb-4">
+          <h2 className="text-4xl md:text-5xl font-permanent font-bold text-white mb-4">
             GALERÍA
           </h2>
           <p className="text-lg text-white/90 max-w-2xl mx-auto">
@@ -237,7 +237,7 @@ export default function MediaGallery({ previewMode = false }: MediaGalleryProps)
           <div className="flex justify-center mt-8">
             <Link
               href="/gallery"
-              className="px-8 py-3 bg-yellow-500 text-black font-edo font-bold rounded-lg hover:bg-yellow-400 transition-colors shadow-lg hover:shadow-xl text-xl"
+              className="px-8 py-3 bg-yellow-500 text-black font-permanent font-bold rounded-lg hover:bg-yellow-400 transition-colors shadow-lg hover:shadow-xl text-xl"
             >
               ver mas
             </Link>

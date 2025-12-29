@@ -51,7 +51,7 @@ function PaymentInfoSection() {
             className=" py-12 px-8 rounded-lg mb-8 w-full flex flex-col gap-10"
             id="payment-info"
         >
-            <h2 className="font-edo text-5xl md:text-6xl font-bold mb-12 text-black text-center">
+            <h2 className="font-permanent text-5xl md:text-6xl font-bold mb-12 text-black text-center">
                 ¡REALIZA TU INSCRIPCIÓN!
             </h2>
             <div className="flex flex-col lg:flex-row gap-8 items-start lg:justify-evenly w-full">

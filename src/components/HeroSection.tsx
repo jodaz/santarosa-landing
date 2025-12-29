@@ -16,11 +16,11 @@ function HeroSection() {
             ></div>
             <div className="absolute top-1/3 md:top-1/2 md:right-[10%] transform -translate-y-1/2 w-fit h-64 flex items-center justify-center mb-8 rounded-lg flex flex-col px-8">
                 <div className="text-center mb-4">
-                    <p className="text-white text-sm md:text-lg mb-2 font-edo">Carrera y Caminata</p>
-                    <h1 className="text-6xl md:text-8xl font-edo font-bold text-yellow-500 md:mb-2 drop-shadow-lg text-wrap" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}>
+                    <p className="text-white text-sm md:text-lg mb-2 font-permanent">Carrera y Caminata</p>
+                    <h1 className="text-6xl md:text-8xl font-permanent font-bold text-yellow-500 md:mb-2 drop-shadow-lg text-wrap" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}>
                         SANTA ROSA DE LIMA
                     </h1>
-                    <p className="text-yellow-500 text-2xl md:text-4xl font-edo font-bold drop-shadow-lg" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}>
+                    <p className="text-yellow-500 text-2xl md:text-4xl font-permanent font-bold drop-shadow-lg" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}>
                         2025
                     </p>
                 </div>
