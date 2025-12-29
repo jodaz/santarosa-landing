@@ -34,7 +34,7 @@ export default function EventDetailsSection() {
                 {/* --- ROUTE SECTION --- */}
                 <div id="ruta" className="pb-20">
                     <div className="max-w-6xl mx-auto">
-                        <h2 className="text-4xl md:text-5xl font-permanent font-bold mb-8">
+                        <h2 className="text-4xl md:text-6xl font-permanent font-bold mb-8">
                             LA RUTA
                         </h2>
                         
@@ -101,7 +101,7 @@ export default function EventDetailsSection() {
                         
                         {/* Categories */}
                         <div id="categorias" className="flex-1">
-                            <h2 className="text-4xl md:text-5xl font-permanent font-bold mb-8">
+                            <h2 className="text-4xl md:text-6xl font-permanent font-bold mb-8">
                                 CATEGORÍAS
                             </h2>
                             <div className="bg-white/10 rounded-lg p-8 h-full flex flex-col">
@@ -142,7 +142,7 @@ export default function EventDetailsSection() {
 
                         {/* Awards */}
                         <div id="premiacion" className="flex-1">
-                            <h2 className="text-4xl md:text-5xl font-permanent font-bold mb-8">
+                            <h2 className="text-4xl md:text-6xl font-permanent font-bold mb-8">
                                 PREMIACIÓN
                             </h2>
                             <div className="bg-white/10 rounded-lg p-8 h-full flex flex-col">
@@ -194,7 +194,7 @@ export default function EventDetailsSection() {
                 {/* --- KIT SECTION --- */}
                 <div id="kit" className="pt-20">
                     <div className="max-w-6xl mx-auto">
-                        <h2 className="text-4xl md:text-5xl font-permanent font-bold mb-12">
+                        <h2 className="text-4xl md:text-6xl font-permanent font-bold mb-12">
                             NUESTRO KIT
                         </h2>
                         <div className="w-full flex flex-col sm:flex-row bg-white/10 rounded-lg overflow-hidden">

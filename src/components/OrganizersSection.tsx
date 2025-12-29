@@ -13,7 +13,7 @@ function OrganizersSection() {
     return (
         <section id="organizadores" className="py-20 bg-white w-full">
             <div className="container mx-auto px-4">
-                <h2 className="font-permanent text-5xl md:text-6xl font-bold mb-8 text-black text-center mb-12">
+                <h2 className="font-permanent text-4xl md:text-6xl font-bold mb-8 text-black text-center mb-12">
                     ORGANIZADORES
                 </h2>
                 <p className="text-center text-gray-700 text-lg mb-12 max-w-3xl mx-auto">
