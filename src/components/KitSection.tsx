@@ -1,11 +1,12 @@
-import { Shirt, Award, Tag, Gift } from "lucide-react";
+import { Shirt, Award, Tag, Gift, Utensils } from "lucide-react";
+import Image from "next/image";
 
 function KitSection() {
     const kitItems = [
         { icon: Shirt, text: "Camiseta oficial exclusiva" },
         { icon: Tag, text: "Número de participante" },
-        { icon: Award, text: "Chip de cronometraje (carrera)" },
-        { icon: Award, text: "Medalla finisher" },
+        { icon: Award, text: "Medalla de participación" },
+        { icon: Utensils, text: "Refrigerio" },
         { icon: Gift, text: "Sorpresas de patrocinadores" },
     ];
 
@@ -20,11 +21,11 @@ function KitSection() {
             </div>
 
             <div className="container relative z-10">
-                <div className="max-w-4xl">
-                    <h2 className="text-4xl md:text-5xl font-permanent font-bold text-white mb-12">
-                        NUESTRO KIT
-                    </h2>
-                    <div className="bg-white/10 rounded-lg p-8">
+                <h2 className="text-4xl md:text-5xl font-permanent font-bold text-white mb-12">
+                    NUESTRO KIT
+                </h2>
+                <div className="w-full flex flex-col sm:flex-row bg-white/10 rounded-lg">
+                    <div className="p-8">
                         <p className="text-white text-lg mb-6">
                             Tu kit incluye:
                         </p>
@@ -41,6 +42,9 @@ function KitSection() {
                         <p className="text-white text-lg mt-8 font-permanent">
                             ¡Todo lo que necesitas para correr con estilo y comodidad!
                         </p>
+                    </div>
+                    <div className="p-8">
+                      <Image src="/assets/kit.png" alt="Kit" fill />  
                     </div>
                 </div>
             </div>

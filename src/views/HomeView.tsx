@@ -32,10 +32,10 @@ export function HomeView() {
                 <div className="container mx-auto px-4 py-20 relative">
                     <div className="flex flex-col md:flex-row gap-8 w-full">
                         <div className="flex-1">
-                            <AwardsSection />
+                            <CategoriesSection />
                         </div>
                         <div className="flex-1">
-                            <CategoriesSection />
+                            <AwardsSection />
                         </div>
                     </div>
                 </div>
