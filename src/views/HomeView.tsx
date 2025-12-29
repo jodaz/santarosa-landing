@@ -5,11 +5,9 @@ import Footer from "@/components/Footer";
 import MediaGallery from "@/components/MediaGallery";
 import { Navigation } from "@/components/Navigation";
 import { RaceInfo } from "@/components/RaceInfo";
-import CategoriesSection from "@/components/CategoriesSection";
+
 import SponsorsSection from "@/components/SponsorsSection";
-import RouteSection from "@/components/RouteSection";
-import AwardsSection from "@/components/AwardsSection";
-import KitSection from "@/components/KitSection";
+import EventDetailsSection from "@/components/EventDetailsSection";
 import OrganizersSection from "@/components/OrganizersSection";
 
 export function HomeView() {
@@ -25,23 +23,10 @@ export function HomeView() {
             {/* Section 3: Patrocinantes Institucionales */}
             {/* Section 4: Patrocinantes Oficiales */}
             <SponsorsSection />
-            {/* Section 5: La Ruta */}
-            <RouteSection />
-            {/* Section 6: Premiación & Section 7: Categorías */}
-            <section className="bg-blue-900 relative overflow-hidden">
-                <div className="container mx-auto px-4 py-20 relative">
-                    <div className="flex flex-col md:flex-row gap-8 w-full">
-                        <div className="flex-1">
-                            <AwardsSection />
-                        </div>
-                        <div className="flex-1">
-                            <CategoriesSection />
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <KitSection />
-
+            
+            {/* Section 5, 6, 7 & 8: Event Details (Route, Categories, Awards, Kit) */}
+            <EventDetailsSection />
+            
             {/* Section 9: Organizadores */}
             <OrganizersSection />
             {/* Section 10: Galería */}

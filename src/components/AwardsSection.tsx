@@ -2,19 +2,19 @@ import { Trophy, Medal } from "lucide-react";
 
 export default function AwardsSection() {
   return (
-    <div id="premiacion">
+    <div id="premiacion" className="h-[450px]">
       <h2 className="text-4xl md:text-5xl font-permanent font-bold text-white mb-8">
         PREMIACIÓN
       </h2>
       
-      <div className="bg-white/10 rounded-lg p-8 space-y-8">
+      <div className="bg-white/10 rounded-lg p-8 space-y-8 h-full">
         <div className="flex items-start gap-4">
           <Trophy className="w-8 h-8 text-yellow-500 flex-shrink-0 mt-1" />
-          <div>
+          <div className="flex flex-col">
             <h3 className="text-2xl font-permanent font-bold text-white mb-4">
-              Premios en Efectivo que Motivan! 🏆
+              ¡Premios en Efectivo! 🏆
             </h3>
-            <div className="space-y-4">
+            <div className="space-y-4 flex-1">
               <div className="bg-white/5 rounded-lg p-4">
                 <p className="text-yellow-500 font-permanent font-bold text-xl mb-2">
                   Absolutos (Femenino y Masculino)

@@ -7,6 +7,7 @@ import { Loader2, X, Download } from 'lucide-react';
 import { getOptimizedCloudinaryUrl } from '@/lib/cloudinary';
 import type { MediaFile, Pagination } from '@/types/media';
 import Link from 'next/link';
+import SplitText from './SplitText';
 
 interface MediaGalleryProps {
   previewMode?: boolean;
@@ -139,14 +140,6 @@ export default function MediaGallery({ previewMode = false }: MediaGalleryProps)
   // Get display files - limit to 9 in preview mode
   const displayFiles = previewMode ? files.slice(0, 9) : files;
 
-  if (loading) {
-    return (
-      <div className="flex justify-center p-12">
-        <Loader2 className="w-8 h-8 animate-spin text-primary" />
-        <span className="ml-3">Cargando galería...</span>
-      </div>
-    );
-  }
 
   if (error) {
     return (
@@ -158,7 +151,7 @@ export default function MediaGallery({ previewMode = false }: MediaGalleryProps)
   }
 
   return (
-    <section id="galeria" className="py-20 bg-blue-900 relative overflow-hidden">
+    <section id="galeria" className="py-20 bg-white relative overflow-hidden min-h-[600px]">
       {/* Decorative yellow scribbles */}
       <div className="absolute top-0 left-0 w-32 h-32 opacity-20">
         <svg viewBox="0 0 100 100" className="w-full h-full text-yellow-500">
@@ -174,10 +167,17 @@ export default function MediaGallery({ previewMode = false }: MediaGalleryProps)
       </div>
       <div className="container mx-auto px-4 relative">
         <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-permanent font-bold text-white mb-4">
-            GALERÍA
-          </h2>
-          <p className="text-lg text-white/90 max-w-2xl mx-auto">
+          <SplitText
+            text="GALERÍA"
+            className="text-4xl md:text-5xl font-permanent font-bold text-black mb-4 py-4"
+            delay={50}
+            from={{ opacity: 0, transform: 'translate3d(0,50px,0)' }}
+            to={{ opacity: 1, transform: 'translate3d(0,0,0)' }}
+            ease="bounce.out"
+            splitType="chars"
+            tag="h2"
+          />
+          <p className="text-lg text-gray-700 max-w-2xl mx-auto">
             ¡Revive los mejores momentos! 📸
             <br />
             Fotos llenas de energía, sonrisas y esfuerzo de nuestra comunidad runner.
@@ -186,6 +186,12 @@ export default function MediaGallery({ previewMode = false }: MediaGalleryProps)
           </p>
         </div>
 
+        {loading && !loadingMore && (
+          <div className="flex justify-center items-center py-12 text-black">
+            <Loader2 className="w-8 h-8 animate-spin" />
+            <span className="ml-3">Cargando galería...</span>
+          </div>
+        )}
         {/* Gallery Grid - 5 columns */}
         <div className="relative">
           <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
@@ -220,7 +226,7 @@ export default function MediaGallery({ previewMode = false }: MediaGalleryProps)
                       <Loader2 className="w-6 h-6 animate-spin text-gray-400" />
                     </div>
                   )}
-                  <div className="absolute inset-0 bg-gradient-to-t from-primary/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-gray-900/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
               );
             })}
@@ -233,13 +239,13 @@ export default function MediaGallery({ previewMode = false }: MediaGalleryProps)
         </div>
 
         {/* Preview Mode "Ver más" Button */}
-        {previewMode && (
+        {(previewMode && files.length) && (
           <div className="flex justify-center mt-8">
             <Link
               href="/gallery"
-              className="px-8 py-3 bg-yellow-500 text-black font-permanent font-bold rounded-lg hover:bg-yellow-400 transition-colors shadow-lg hover:shadow-xl text-xl"
+              className="px-8 py-3 bg-yellow-500 text-black font-poppins rounded-lg hover:bg-yellow-400 transition-colors shadow-lg hover:shadow-xl text-sm"
             >
-              ver mas
+              Ver más
             </Link>
           </div>
         )}

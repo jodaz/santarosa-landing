@@ -1,5 +1,7 @@
+"use client";
 import { Calendar, DollarSign, Route, Package } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import SplitText from "./SplitText";
 
 export const RaceInfo = () => {
   const infoCards = [
@@ -38,7 +40,7 @@ export const RaceInfo = () => {
   ];
 
   return (
-    <section id="informacion" className="py-20 bg-blue-900 relative overflow-hidden">
+    <section id="informacion" className="py-20 bg-brand-dark-purple relative overflow-hidden">
       {/* Decorative yellow scribbles */}
       <div className="absolute top-0 left-0 w-32 h-32 opacity-20">
         <svg viewBox="0 0 100 100" className="w-full h-full text-yellow-500">
@@ -55,9 +57,16 @@ export const RaceInfo = () => {
 
       <div className="container mx-auto px-4 relative">
         <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-permanent font-bold text-white mb-4">
-            INFORMACIÓN
-          </h2>
+          <SplitText
+            text="INFORMACIÓN"
+            className="text-4xl md:text-5xl font-permanent font-bold text-white mb-4 py-4"
+            delay={50}
+            from={{ opacity: 0, transform: 'translate3d(0,50px,0)' }}
+            to={{ opacity: 1, transform: 'translate3d(0,0,0)' }}
+            ease="bounce.out"
+            splitType="chars"
+            tag="h2"
+          />
         </div>
 
         <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">

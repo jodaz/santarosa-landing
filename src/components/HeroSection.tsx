@@ -1,5 +1,4 @@
 import SANTAROSA3 from "../assets/logos/SANTAROSA3_transparent.png";
-import EventDetailsSection from "./EventDetailsSection";
 import Image from "next/image";
 
 function HeroSection() {
@@ -37,7 +36,6 @@ function HeroSection() {
                     Un evento lleno de energía, fe y comunidad que une a Carúpano en movimiento. Corre 10K o camina 5K por la Av. Rómulo Gallegos el 30 de agosto. ¡Inscríbete ahora y sé parte de esta celebración inolvidable! 💪🌟
                 </p>
             </div>
-            <EventDetailsSection />
         </section>
     );
 }
