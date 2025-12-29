@@ -28,7 +28,7 @@ export default function MediaGallery({ previewMode = false }: MediaGalleryProps)
 
   // Helper function to generate optimized Cloudinary URL using SDK
   const getOptimizedImageUrl = useCallback((file: MediaFile) => {
-    return getOptimizedCloudinaryUrl(file.url, 300);
+    return getOptimizedCloudinaryUrl(file.url, 400);
   }, []);
 
   const fetchPage = useCallback(async (page: number, appendResults = false) => {
@@ -172,9 +172,9 @@ export default function MediaGallery({ previewMode = false }: MediaGalleryProps)
           <path d="M15,60 Q35,70 55,60 T95,60" stroke="currentColor" fill="none" strokeWidth="2" />
         </svg>
       </div>
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-4 relative">
         <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-edo font-bold text-white mb-4">
+          <h2 className="text-4xl md:text-5xl font-permanent font-bold text-white mb-4">
             GALERÍA
           </h2>
           <p className="text-lg text-white/90 max-w-2xl mx-auto">
@@ -237,7 +237,7 @@ export default function MediaGallery({ previewMode = false }: MediaGalleryProps)
           <div className="flex justify-center mt-8">
             <Link
               href="/gallery"
-              className="px-8 py-3 bg-yellow-500 text-black font-edo font-bold rounded-lg hover:bg-yellow-400 transition-colors shadow-lg hover:shadow-xl text-xl"
+              className="px-8 py-3 bg-yellow-500 text-black font-permanent font-bold rounded-lg hover:bg-yellow-400 transition-colors shadow-lg hover:shadow-xl text-xl"
             >
               ver mas
             </Link>
@@ -287,7 +287,7 @@ export default function MediaGallery({ previewMode = false }: MediaGalleryProps)
               <Download className="w-6 h-6 text-white" />
             </button>
             <img
-              src={selectedImage}
+              src={selectedFile.url}
               alt="Vista ampliada"
               className="max-w-full max-h-full object-contain animate-scale-in"
               onClick={(e) => e.stopPropagation()}

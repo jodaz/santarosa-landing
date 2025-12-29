@@ -33,7 +33,7 @@ function SponsorsSection() {
             {/* Institutional Sponsors */}
             <section className="py-20 bg-white w-full">
                 <div className="container mx-auto px-4">
-                    <h2 className="font-edo text-5xl md:text-6xl font-bold mb-8 text-black text-center mb-12">
+                    <h2 className="font-permanent text-5xl md:text-6xl font-bold mb-8 text-black text-center mb-12">
                         PATROCINANTES INSTITUCIONALES
                     </h2>
                     <p className="text-center text-gray-700 text-lg mb-8 max-w-2xl mx-auto">
@@ -58,7 +58,7 @@ function SponsorsSection() {
             {/* Official Sponsors */}
             <section className="py-20 bg-white w-full">
                 <div className="container mx-auto px-4">
-                    <h2 className="font-edo text-5xl md:text-6xl font-bold mb-8 text-black text-center mb-12">
+                    <h2 className="font-permanent text-5xl md:text-6xl font-bold mb-8 text-black text-center mb-12">
                         PATROCINANTES OFICIALES
                     </h2>
                     <p className="text-center text-gray-700 text-lg mb-8 max-w-2xl mx-auto">

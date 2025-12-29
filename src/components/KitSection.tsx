@@ -21,7 +21,7 @@ function KitSection() {
 
             <div className="container relative z-10">
                 <div className="max-w-4xl">
-                    <h2 className="text-4xl md:text-5xl font-edo font-bold text-white mb-12">
+                    <h2 className="text-4xl md:text-5xl font-permanent font-bold text-white mb-12">
                         NUESTRO KIT
                     </h2>
                     <div className="bg-white/10 rounded-lg p-8">
@@ -38,7 +38,7 @@ function KitSection() {
                                 </li>
                             ))}
                         </ul>
-                        <p className="text-white text-lg mt-8 font-edo">
+                        <p className="text-white text-lg mt-8 font-permanent">
                             ¡Todo lo que necesitas para correr con estilo y comodidad!
                         </p>
                     </div>

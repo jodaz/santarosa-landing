@@ -9,19 +9,19 @@ export const Navigation = () => {
 
   const navItems = [
     { name: "Inicio", href: "/" },
-    { name: "Inscripciones", href: "/#inscripciones" },
+    { name: "Inscripciones", href: "/inscripciones" },
     { name: "Recorrido", href: "/#recorrido" },
     { name: "Categorías", href: "/#categorias" },
-    { name: "Galería", href: "/#galerry" },
+    { name: "Galería", href: "/gallery" },
     { name: "Contacto", href: "/#contacto" },
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-card/95 backdrop-blur-md border-b border-border shadow-sm">
+    <nav className="fixed top-0 left-0 right-0 z-10 bg-card/95 backdrop-blur-md border-b border-border shadow-sm">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <a href="#hero" className="flex items-center space-x-2">
+          <a href="/" className="flex items-center space-x-2">
             <div className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
               Santa Rosa 10K
             </div>

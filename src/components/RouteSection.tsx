@@ -13,9 +13,9 @@ export default function RouteSection() {
         </svg>
       </div>
 
-      <div className="relative z-10 container">
+      <div className="relative container">
         <div className="max-w-6xl">
-          <h2 className="text-4xl md:text-5xl font-edo font-bold text-white mb-8">
+          <h2 className="text-4xl md:text-5xl font-permanent font-bold text-white mb-8">
             LA RUTA
           </h2>
           
@@ -42,7 +42,7 @@ export default function RouteSection() {
                   <p className="text-white font-semibold mb-1">Mapa en Strava</p>
                   <a 
                     href="#" 
-                    className="text-yellow-500 hover:text-yellow-400 underline font-edo"
+                    className="text-yellow-500 hover:text-yellow-400 underline font-permanent"
                     target="_blank"
                     rel="noopener noreferrer"
                   >

@@ -53,9 +53,9 @@ export const RaceInfo = () => {
         </svg>
       </div>
 
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-4 relative">
         <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-edo font-bold text-white mb-4">
+          <h2 className="text-4xl md:text-5xl font-permanent font-bold text-white mb-4">
             INFORMACIÓN
           </h2>
         </div>
@@ -77,7 +77,7 @@ export const RaceInfo = () => {
                       <card.icon className={`w-8 h-8 ${card.color}`} />
                     </div>
                     <div className="flex-1">
-                      <h3 className="text-xl font-bold text-black mb-3 font-edo">
+                      <h3 className="text-xl font-bold text-black mb-3 font-permanent">
                         {card.title}
                       </h3>
                       <p className="text-gray-700 leading-relaxed whitespace-pre-line">

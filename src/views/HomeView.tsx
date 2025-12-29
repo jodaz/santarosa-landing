@@ -29,7 +29,7 @@ export function HomeView() {
             <RouteSection />
             {/* Section 6: Premiación & Section 7: Categorías */}
             <section className="bg-blue-900 relative overflow-hidden">
-                <div className="container mx-auto px-4 py-20 relative z-10">
+                <div className="container mx-auto px-4 py-20 relative">
                     <div className="flex flex-col md:flex-row gap-8 w-full">
                         <div className="flex-1">
                             <AwardsSection />
