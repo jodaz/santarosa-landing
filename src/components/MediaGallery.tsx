@@ -150,7 +150,7 @@ export default function MediaGallery({ previewMode = false }: MediaGalleryProps)
   }
 
   return (
-    <section id="galeria" className="py-20 bg-blue-900 relative overflow-hidden min-h-[600px]">
+    <section id="galeria" className="py-20 bg-white relative overflow-hidden min-h-[600px]">
       {/* Decorative yellow scribbles */}
       <div className="absolute top-0 left-0 w-32 h-32 opacity-20">
         <svg viewBox="0 0 100 100" className="w-full h-full text-yellow-500">
@@ -166,10 +166,10 @@ export default function MediaGallery({ previewMode = false }: MediaGalleryProps)
       </div>
       <div className="container mx-auto px-4 relative">
         <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-permanent font-bold text-white mb-4">
+          <h2 className="text-4xl md:text-5xl font-permanent font-bold text-black mb-4">
             GALERÍA
           </h2>
-          <p className="text-lg text-white/90 max-w-2xl mx-auto">
+          <p className="text-lg text-gray-700 max-w-2xl mx-auto">
             ¡Revive los mejores momentos! 📸
             <br />
             Fotos llenas de energía, sonrisas y esfuerzo de nuestra comunidad runner.
@@ -179,7 +179,7 @@ export default function MediaGallery({ previewMode = false }: MediaGalleryProps)
         </div>
 
         {loading && !loadingMore && (
-          <div className="flex justify-center items-center py-12 text-white">
+          <div className="flex justify-center items-center py-12 text-black">
             <Loader2 className="w-8 h-8 animate-spin" />
             <span className="ml-3">Cargando galería...</span>
           </div>

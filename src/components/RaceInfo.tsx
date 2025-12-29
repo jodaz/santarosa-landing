@@ -38,7 +38,7 @@ export const RaceInfo = () => {
   ];
 
   return (
-    <section id="informacion" className="py-20 bg-blue-900 relative overflow-hidden">
+    <section id="informacion" className="py-20 bg-brand-dark-purple relative overflow-hidden">
       {/* Decorative yellow scribbles */}
       <div className="absolute top-0 left-0 w-32 h-32 opacity-20">
         <svg viewBox="0 0 100 100" className="w-full h-full text-yellow-500">

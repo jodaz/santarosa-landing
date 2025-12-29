@@ -8,7 +8,7 @@ function Footer() {
     ];
     
     return (
-        <footer className="bg-gradient-to-br from-primary to-accent text-white">
+        <footer className="bg-brand-dark-purple text-white">
             <div className="container mx-auto px-4 py-12">
             <div className="grid md:grid-cols-3 gap-12 mb-8">
             {/* Brand */}
@@ -22,8 +22,9 @@ function Footer() {
                 <div className="flex gap-4">
                 <a 
                     href="https://www.instagram.com/santarosa10k" 
-                    className="p-2 bg-white/20 hover:bg-white/30 rounded-full transition-colors"
+                    className="p-2 bg-white/20 hover:bg-white/30 rounded-full text-white/90"
                     aria-label="Instagram"
+                    target="_blank"
                 >
                     <Instagram className="w-5 h-5" />
                 </a>

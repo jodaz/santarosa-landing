@@ -17,10 +17,10 @@ function OrganizersSection() {
                     ORGANIZADORES
                 </h2>
                 <p className="text-center text-gray-700 text-lg mb-12 max-w-3xl mx-auto">
-                    Este evento es posible gracias a la pasión de @titanesrunnerscpno y @runningcentauros.
+                    Este evento es posible gracias a la pasión de <a href="https://www.instagram.com/titanesrunnerscpno" target="_blank" rel="noopener noreferrer" className="font-bold hover:text-blue-600 transition-colors">@titanesrunnerscpno</a> y <a href="https://www.instagram.com/runningcentauros" target="_blank" rel="noopener noreferrer" className="font-bold hover:text-blue-600 transition-colors">@runningcentauros</a>.
                     <br />
                     <br />
-                    Con el apoyo de @alcaldiadecarupano, unimos fuerzas para promover la salud, la fe y la comunidad en Carúpano. ¡Gracias por hacer realidad esta primera edición!
+                    Con el apoyo de <a href="https://www.instagram.com/alcaldiadecarupano" target="_blank" rel="noopener noreferrer" className="font-bold hover:text-blue-600 transition-colors">@alcaldiadecarupano</a>, unimos fuerzas para promover la salud, la fe y la comunidad en Carúpano. ¡Gracias por hacer realidad esta primera edición!
                 </p>
                 <div className="flex flex-wrap justify-center items-center gap-16 md:gap-32">
                     {organizers.map((organizer, index) => (
@@ -32,7 +32,14 @@ function OrganizersSection() {
                                     className="w-full h-full object-contain"
                                 />
                             </div>
-                            <p className="text-black font-permanent font-bold text-xl">{organizer.handle}</p>
+                            <a 
+                                href={`https://instagram.com/${organizer.handle.replace('@', '')}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-black font-permanent font-bold text-xl hover:text-blue-600 transition-colors"
+                            >
+                                {organizer.handle}
+                            </a>
                         </div>
                     ))}
                 </div>
