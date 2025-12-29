@@ -172,7 +172,7 @@ export default function MediaGallery({ previewMode = false }: MediaGalleryProps)
           <path d="M15,60 Q35,70 55,60 T95,60" stroke="currentColor" fill="none" strokeWidth="2" />
         </svg>
       </div>
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-4 relative">
         <div className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl font-edo font-bold text-white mb-4">
             GALERÍA

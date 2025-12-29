@@ -13,7 +13,7 @@ export default function RouteSection() {
         </svg>
       </div>
 
-      <div className="relative z-10 container">
+      <div className="relative container">
         <div className="max-w-6xl">
           <h2 className="text-4xl md:text-5xl font-edo font-bold text-white mb-8">
             LA RUTA
