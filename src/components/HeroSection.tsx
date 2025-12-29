@@ -1,5 +1,4 @@
 import SANTAROSA3 from "../assets/logos/SANTAROSA3_transparent.png";
-import EventDetailsSection from "./EventDetailsSection";
 import Image from "next/image";
 
 function HeroSection() {
