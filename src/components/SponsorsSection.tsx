@@ -1,6 +1,12 @@
+"use client";
 import SantaRosa from "../assets/logos/santarosadelima.png";
 import Alcaldia from "../assets/logos/alcaldia2.png";
 import Image from "next/image";
+import SplitText from "./SplitText";
+
+// @ts-ignore
+import LogoLoopOriginal from "./LogoLoop";
+const LogoLoop = LogoLoopOriginal as any;
 
 import Autopartes from "../assets/logos/sponsors/autopartesn1.png";
 import Bangood from "../assets/logos/sponsors/bangood.png";
@@ -74,15 +80,29 @@ function SponsorsSection() {
         { name: "TuTV", logo: TuTV },
         { name: "Vnet", logo: Vnet },
     ];
+    
+    // Split sponsors into two groups
+    const half = Math.ceil(officialSponsors.length / 2);
+    const officialSponsors1 = officialSponsors.slice(0, half);
+    const officialSponsors2 = officialSponsors.slice(half);
 
     return (
         <>
             {/* Institutional Sponsors */}
             <section className="py-20 bg-white w-full">
                 <div className="container mx-auto px-4">
-                    <h2 className="font-permanent text-4xl sm:text-5xl md:text-6xl font-bold mb-8 text-black text-center mb-12">
-                        PATROCINANTES INSTITUCIONALES
-                    </h2>
+                    <div className="w-full text-center">
+                        <SplitText
+                            text="PATROCINANTES INSTITUCIONALES"
+                            className="font-permanent text-4xl sm:text-5xl md:text-6xl font-bold mb-8 text-black text-center mb-12 py-4"
+                            delay={50}
+                            from={{ opacity: 0, transform: 'translate3d(0,50px,0)' }}
+                            to={{ opacity: 1, transform: 'translate3d(0,0,0)' }}
+                            ease="bounce.out"
+                            splitType="chars"
+                            tag="h2"
+                        />
+                    </div>
                     <p className="text-center text-gray-700 text-lg mb-8 max-w-2xl mx-auto">
                         Gracias a nuestros aliados institucionales por creer en el deporte y la comunidad. Su apoyo hace posible esta gran celebración en Carúpano. 🙌
                     </p>
@@ -105,24 +125,61 @@ function SponsorsSection() {
             {/* Official Sponsors */}
             <section className="py-20 bg-white w-full">
                 <div className="container mx-auto px-4">
-                    <h2 className="font-permanent text-4xl sm:text-5xl md:text-6xl font-bold mb-8 text-black text-center mb-12">
-                        PATROCINANTES OFICIALES
-                    </h2>
+                    <div className="w-full text-center">
+                        <SplitText
+                            text="PATROCINANTES OFICIALES"
+                            className="font-permanent text-4xl sm:text-5xl md:text-6xl font-bold mb-8 text-black text-center mb-12 py-4"
+                            delay={50}
+                            from={{ opacity: 0, transform: 'translate3d(0,50px,0)' }}
+                            to={{ opacity: 1, transform: 'translate3d(0,0,0)' }}
+                            ease="bounce.out"
+                            splitType="chars"
+                            tag="h2"
+                        />
+                    </div>
                     <p className="text-center text-gray-700 text-lg mb-8 max-w-2xl mx-auto">
                         Nuestros patrocinadores oficiales impulsan cada paso de esta carrera. ¡Con su respaldo, llegamos más lejos! 🌟
                     </p>
-                    <div className="grid grid-cols-2 md:grid-cols-5 gap-1 max-w-8xl mx-auto">
-                        {officialSponsors.map((sponsor, index) => (
-                            <div key={index} className="flex flex-col items-center">
-                                <div className="w-full aspect-square rounded-lg flex items-center justify-center">
-                                    <Image
-                                        src={sponsor.logo}
-                                        alt={sponsor.name}
-                                        className="w-[140px] h-[140px] object-contain"
-                                    />
+                    <div className="w-full relative overflow-hidden space-y-8">
+                        {/* First Loop - Left Direction */}
+                        <LogoLoop
+                            logos={officialSponsors1}
+                            speed={50}
+                            direction="left"
+                            gap={60}
+                            logoHeight={140}
+                            renderItem={(sponsor: any, index: any) => (
+                                <div key={index} className="flex flex-col items-center mx-4">
+                                    <div className="w-[140px] h-[140px] rounded-lg flex items-center justify-center">
+                                        <Image
+                                            src={sponsor.logo}
+                                            alt={sponsor.name}
+                                            className="w-[140px] h-[140px] object-contain"
+                                        />
+                                    </div>
                                 </div>
-                            </div>
-                        ))}
+                            )}
+                        />
+                        
+                        {/* Second Loop - Right Direction */}
+                        <LogoLoop
+                            logos={officialSponsors2}
+                            speed={50}
+                            direction="right"
+                            gap={60}
+                            logoHeight={140}
+                            renderItem={(sponsor: any, index: any) => (
+                                <div key={index} className="flex flex-col items-center mx-4">
+                                    <div className="w-[140px] h-[140px] rounded-lg flex items-center justify-center">
+                                        <Image
+                                            src={sponsor.logo}
+                                            alt={sponsor.name}
+                                            className="w-[140px] h-[140px] object-contain"
+                                        />
+                                    </div>
+                                </div>
+                            )}
+                        />
                     </div>
                 </div>
             </section>

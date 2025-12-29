@@ -1,3 +1,5 @@
+"use client";
+import SplitText from "./SplitText";
 import { MapPin, Droplet, Trophy, Medal, Shirt, Award, Tag, Gift, Utensils } from "lucide-react";
 import Ruta from "@/assets/images/ruta.png";
 import Image from "next/image";
@@ -34,9 +36,16 @@ export default function EventDetailsSection() {
                 {/* --- ROUTE SECTION --- */}
                 <div id="ruta" className="pb-20">
                     <div className="max-w-6xl mx-auto">
-                        <h2 className="text-4xl md:text-6xl font-permanent font-bold mb-8">
-                            LA RUTA
-                        </h2>
+                        <SplitText
+                            text="LA RUTA"
+                            className="text-4xl md:text-6xl font-permanent font-bold mb-8 py-4"
+                            delay={50}
+                            from={{ opacity: 0, transform: 'translate3d(0,50px,0)' }}
+                            to={{ opacity: 1, transform: 'translate3d(0,0,0)' }}
+                            ease="bounce.out"
+                            splitType="chars"
+                            tag="h2"
+                        />
                         
                         <div className="grid md:grid-cols-2 gap-8 items-start">
                             <div className="space-y-6">
@@ -101,9 +110,16 @@ export default function EventDetailsSection() {
                         
                         {/* Categories */}
                         <div id="categorias" className="flex-1">
-                            <h2 className="text-4xl md:text-6xl font-permanent font-bold mb-8">
-                                CATEGORÍAS
-                            </h2>
+                            <SplitText
+                                text="CATEGORÍAS"
+                                className="text-4xl md:text-6xl font-permanent font-bold mb-8 py-4"
+                                delay={50}
+                                animationFrom={{ opacity: 0, transform: 'translate3d(0,50px,0)' }}
+                                animationTo={{ opacity: 1, transform: 'translate3d(0,0,0)' }}
+                                ease="bounce.out"
+                                splitType="chars"
+                                tag="h2"
+                            />
                             <div className="bg-white/10 rounded-lg p-8 h-full flex flex-col">
                                 <p className="text-lg mb-6">
                                     ¡Hay un lugar para todos! Participa en:
@@ -142,9 +158,16 @@ export default function EventDetailsSection() {
 
                         {/* Awards */}
                         <div id="premiacion" className="flex-1">
-                            <h2 className="text-4xl md:text-6xl font-permanent font-bold mb-8">
-                                PREMIACIÓN
-                            </h2>
+                            <SplitText
+                                text="PREMIACIÓN"
+                                className="text-4xl md:text-6xl font-permanent font-bold mb-8 py-4"
+                                delay={50}
+                                animationFrom={{ opacity: 0, transform: 'translate3d(0,50px,0)' }}
+                                animationTo={{ opacity: 1, transform: 'translate3d(0,0,0)' }}
+                                ease="bounce.out"
+                                splitType="chars"
+                                tag="h2"
+                            />
                             <div className="bg-white/10 rounded-lg p-8 h-full flex flex-col">
                                 <div className="flex items-start gap-4">
                                     <Trophy className="w-8 h-8 text-yellow-500 flex-shrink-0 mt-1" />
@@ -194,9 +217,16 @@ export default function EventDetailsSection() {
                 {/* --- KIT SECTION --- */}
                 <div id="kit" className="pt-20">
                     <div className="max-w-6xl mx-auto">
-                        <h2 className="text-4xl md:text-6xl font-permanent font-bold mb-12">
-                            NUESTRO KIT
-                        </h2>
+                        <SplitText
+                            text="NUESTRO KIT"
+                            className="text-4xl md:text-6xl font-permanent font-bold mb-12 py-4"
+                            delay={50}
+                            from={{ opacity: 0, transform: 'translate3d(0,50px,0)' }}
+                            to={{ opacity: 1, transform: 'translate3d(0,0,0)' }}
+                            ease="bounce.out"
+                            splitType="chars"
+                            tag="h2"
+                        />
                         <div className="w-full flex flex-col sm:flex-row bg-white/10 rounded-lg overflow-hidden">
                             <div className="p-8 flex-1">
                                 <p className="text-lg mb-6">

@@ -7,6 +7,7 @@ import { Loader2, X, Download } from 'lucide-react';
 import { getOptimizedCloudinaryUrl } from '@/lib/cloudinary';
 import type { MediaFile, Pagination } from '@/types/media';
 import Link from 'next/link';
+import SplitText from './SplitText';
 
 interface MediaGalleryProps {
   previewMode?: boolean;
@@ -166,9 +167,16 @@ export default function MediaGallery({ previewMode = false }: MediaGalleryProps)
       </div>
       <div className="container mx-auto px-4 relative">
         <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-permanent font-bold text-black mb-4">
-            GALERÍA
-          </h2>
+          <SplitText
+            text="GALERÍA"
+            className="text-4xl md:text-5xl font-permanent font-bold text-black mb-4 py-4"
+            delay={50}
+            from={{ opacity: 0, transform: 'translate3d(0,50px,0)' }}
+            to={{ opacity: 1, transform: 'translate3d(0,0,0)' }}
+            ease="bounce.out"
+            splitType="chars"
+            tag="h2"
+          />
           <p className="text-lg text-gray-700 max-w-2xl mx-auto">
             ¡Revive los mejores momentos! 📸
             <br />
