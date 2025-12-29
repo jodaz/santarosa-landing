@@ -139,14 +139,6 @@ export default function MediaGallery({ previewMode = false }: MediaGalleryProps)
   // Get display files - limit to 9 in preview mode
   const displayFiles = previewMode ? files.slice(0, 9) : files;
 
-  if (loading) {
-    return (
-      <div className="flex justify-center p-12">
-        <Loader2 className="w-8 h-8 animate-spin text-primary" />
-        <span className="ml-3">Cargando galería...</span>
-      </div>
-    );
-  }
 
   if (error) {
     return (
@@ -158,7 +150,7 @@ export default function MediaGallery({ previewMode = false }: MediaGalleryProps)
   }
 
   return (
-    <section id="galeria" className="py-20 bg-blue-900 relative overflow-hidden">
+    <section id="galeria" className="py-20 bg-blue-900 relative overflow-hidden min-h-[600px]">
       {/* Decorative yellow scribbles */}
       <div className="absolute top-0 left-0 w-32 h-32 opacity-20">
         <svg viewBox="0 0 100 100" className="w-full h-full text-yellow-500">
@@ -186,6 +178,12 @@ export default function MediaGallery({ previewMode = false }: MediaGalleryProps)
           </p>
         </div>
 
+        {loading && !loadingMore && (
+          <div className="flex justify-center items-center py-12 text-white">
+            <Loader2 className="w-8 h-8 animate-spin" />
+            <span className="ml-3">Cargando galería...</span>
+          </div>
+        )}
         {/* Gallery Grid - 5 columns */}
         <div className="relative">
           <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
@@ -233,7 +231,7 @@ export default function MediaGallery({ previewMode = false }: MediaGalleryProps)
         </div>
 
         {/* Preview Mode "Ver más" Button */}
-        {previewMode && (
+        {(previewMode && files.length) && (
           <div className="flex justify-center mt-8">
             <Link
               href="/gallery"

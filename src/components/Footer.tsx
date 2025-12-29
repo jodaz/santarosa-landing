@@ -2,16 +2,13 @@ import { Instagram, Mail, MapPin } from "lucide-react";
 
 function Footer() {
     const navLinks = [
-        { name: "Inicio", href: "#hero" },
-        { name: "Inscripciones", href: "#inscripciones" },
-        { name: "Recorrido", href: "#recorrido" },
-        { name: "Clasificaciones", href: "#clasificaciones" },
+        { name: "Inscripciones", href: "/inscripciones" },
+        { name: "Recorrido", href: "#route" },
         { name: "Galería", href: "/gallery" },
-        { name: "Contacto", href: "#contacto" },
     ];
     
     return (
-        <footer id="contacto" className="bg-gradient-to-br from-primary to-accent text-white">
+        <footer className="bg-gradient-to-br from-primary to-accent text-white">
             <div className="container mx-auto px-4 py-12">
             <div className="grid md:grid-cols-3 gap-12 mb-8">
             {/* Brand */}
@@ -24,7 +21,7 @@ function Footer() {
                 </p>
                 <div className="flex gap-4">
                 <a 
-                    href="#" 
+                    href="https://www.instagram.com/santarosa10k" 
                     className="p-2 bg-white/20 hover:bg-white/30 rounded-full transition-colors"
                     aria-label="Instagram"
                 >
@@ -51,7 +48,7 @@ function Footer() {
             </div>
 
             {/* Contact */}
-            <div>
+            <div id="contacto">
                 <h4 className="text-lg font-bold mb-4">Contacto</h4>
                 <ul className="space-y-3">
                 <li className="flex items-start gap-3">
