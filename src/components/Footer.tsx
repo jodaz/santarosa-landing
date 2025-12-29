@@ -1,4 +1,5 @@
 import { Instagram, Mail, MapPin } from "lucide-react";
+import Image from "next/image";
 
 function Footer() {
     const navLinks = [
@@ -10,12 +11,10 @@ function Footer() {
     return (
         <footer className="bg-brand-dark-purple text-white">
             <div className="container mx-auto px-4 py-12">
-            <div className="grid md:grid-cols-3 gap-12 mb-8">
+            <div className="grid md:grid-cols-4 gap-12 mb-8">
             {/* Brand */}
             <div>
-                <h3 className="text-2xl font-black mb-4">
-                Carrera y Caminata Santa Rosa de Lima 2025
-                </h3>
+                <Image src="/assets/LOGO_T.png" alt="Logo" width={140} height={140} style={{ marginLeft: '-20px', marginTop: '-30px'}} />
                 <p className="text-white/80 mb-4">
                 Carrera y Caminata Santa Rosa de Lima 2025. Un evento deportivo que une a la comunidad de Carúpano y sus alrededores.
                 </p>
