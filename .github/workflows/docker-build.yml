@@ -1,0 +1,41 @@
+name: Docker Build CI
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Create .env.local file
+        # The Dockerfile expects .env.local to exist. 
+        # We create it here using a GitHub Secret.
+        # If you don't have secrets yet, you can remove this step if you adjust your Dockerfile,
+        # or simply create a dummy file if the build doesn't strictly depend on specific values.
+        run: |
+          if [ -n "${{ secrets.ENV_LOCAL }}" ]; then
+            echo "${{ secrets.ENV_LOCAL }}" > .env.local
+          else
+            echo "# Dummy .env.local for build" > .env.local
+          fi
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./Dockerfile
+          push: false # Set to true if you want to push to a registry (requires login step)
+          tags: santarosa-landing:latest
+          # Caching to speed up builds
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
