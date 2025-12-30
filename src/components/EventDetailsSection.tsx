@@ -114,8 +114,8 @@ export default function EventDetailsSection() {
                                 text="CATEGORÍAS"
                                 className="text-4xl md:text-6xl font-permanent font-bold mb-8 py-4"
                                 delay={50}
-                                animationFrom={{ opacity: 0, transform: 'translate3d(0,50px,0)' }}
-                                animationTo={{ opacity: 1, transform: 'translate3d(0,0,0)' }}
+                                from={{ opacity: 0, transform: 'translate3d(0,50px,0)' }}
+                                to={{ opacity: 1, transform: 'translate3d(0,0,0)' }}
                                 ease="bounce.out"
                                 splitType="chars"
                                 tag="h2"
@@ -162,8 +162,8 @@ export default function EventDetailsSection() {
                                 text="PREMIACIÓN"
                                 className="text-4xl md:text-6xl font-permanent font-bold mb-8 py-4"
                                 delay={50}
-                                animationFrom={{ opacity: 0, transform: 'translate3d(0,50px,0)' }}
-                                animationTo={{ opacity: 1, transform: 'translate3d(0,0,0)' }}
+                                from={{ opacity: 0, transform: 'translate3d(0,50px,0)' }}
+                                to={{ opacity: 1, transform: 'translate3d(0,0,0)' }}
                                 ease="bounce.out"
                                 splitType="chars"
                                 tag="h2"

@@ -4,8 +4,8 @@ import Alcaldia from "../assets/logos/alcaldia2.png";
 import Image from "next/image";
 import SplitText from "./SplitText";
 
-// @ts-ignore
 import LogoLoopOriginal from "./LogoLoop";
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const LogoLoop = LogoLoopOriginal as any;
 
 import Autopartes from "../assets/logos/sponsors/autopartesn1.png";
@@ -148,7 +148,7 @@ function SponsorsSection() {
                             direction="left"
                             gap={60}
                             logoHeight={140}
-                            renderItem={(sponsor: any, index: any) => (
+                            renderItem={(sponsor: { logo: string; name: string }, index: number) => (
                                 <div key={index} className="flex flex-col items-center mx-4">
                                     <div className="w-[140px] h-[140px] rounded-lg flex items-center justify-center">
                                         <Image
@@ -168,7 +168,7 @@ function SponsorsSection() {
                             direction="right"
                             gap={60}
                             logoHeight={140}
-                            renderItem={(sponsor: any, index: any) => (
+                            renderItem={(sponsor: { logo: string; name: string }, index: number) => (
                                 <div key={index} className="flex flex-col items-center mx-4">
                                     <div className="w-[140px] h-[140px] rounded-lg flex items-center justify-center">
                                         <Image
