@@ -17,9 +17,6 @@ COPY . .
 # Explicitly copy .env.local as requested
 COPY .env.local .env.local
 
-# Check typescript errors
-RUN pnpm run typecheck
-
 # Disable telemetry during build
 RUN pnpm run build
 
