@@ -9,8 +9,9 @@ function HeroSection() {
                 style={{
                     backgroundImage: `url(./hero-background2.jpg)`,
                     backgroundSize: "cover",
-                    backgroundPosition: "left",
+                    backgroundPosition: "center",
                     backgroundRepeat: "no-repeat",
+                    backgroundAttachment: "fixed",
                 }}
             ></div>
             <div className="absolute top-1/3 md:top-1/2 md:right-[10%] transform -translate-y-1/2 w-fit h-64 flex items-center justify-center mb-8 rounded-lg flex flex-col px-8">
