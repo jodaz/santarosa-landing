@@ -9,8 +9,9 @@ function HeroSection() {
                 style={{
                     backgroundImage: `url(./hero-background2.jpg)`,
                     backgroundSize: "cover",
-                    backgroundPosition: "left",
+                    backgroundPosition: "center",
                     backgroundRepeat: "no-repeat",
+                    backgroundAttachment: "fixed",
                 }}
             ></div>
             <div className="absolute top-1/3 md:top-1/2 md:right-[10%] transform -translate-y-1/2 w-fit h-64 flex items-center justify-center mb-8 rounded-lg flex flex-col px-8">
@@ -29,7 +30,7 @@ function HeroSection() {
                     className="h-50 md:min-h-96 md:w-96 object-contain"
                 />
             </div>
-            <div className="absolute bottom-32 md:bottom-40 left-4 md:left-8 right-4 md:right-auto max-w-2xl bg-black/60 backdrop-blur-sm rounded-lg p-4 md:p-6">
+            <div className="absolute bottom-32 md:bottom-40 left-4 md:left-8 right-4 md:right-auto max-w-2xl bg-black/60 backdrop-blur-sm rounded-2xl p-4 md:p-6 border border-white/20 shadow-lg">
                 <p className="text-white text-sm md:text-base leading-relaxed">
                     ¡Bienvenidos a la Primera Edición de la Carrera y Caminata a Santa Rosa de Lima 2025! 🏃‍♂️🏃‍♀️
                     <br /><br />

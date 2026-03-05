@@ -32,7 +32,7 @@ export async function GET(request: NextRequest) {
     const response = await s3Client.send(command);
 
     const items = (response.Contents || [])
-      .filter(obj => obj.Key !== FOLDER)
+      .filter(obj => obj.Key && !obj.Key.endsWith('/'))
       .slice(0, PAGE_SIZE); // Limit to exactly PAGE_SIZE
 
     const files = items.map(obj => {

@@ -109,7 +109,7 @@ function SponsorsSection() {
                     <div className="flex flex-wrap justify-center items-center gap-16 md:gap-32">
                         {institutionalSponsors.map((sponsor, index) => (
                             <div key={index} className="flex flex-col items-center">
-                                <div className="w-48 h-48 rounded-lg flex items-center justify-center">
+                                <div className="w-48 h-48 rounded-2xl flex items-center justify-center">
                                     <Image
                                         src={sponsor.logo}
                                         alt={sponsor.name}
