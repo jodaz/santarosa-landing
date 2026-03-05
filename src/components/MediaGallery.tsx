@@ -3,11 +3,12 @@
 
 import { useState, useEffect, useCallback, useRef } from 'react';
 import Image from 'next/image';
-import { Loader2, X, Download } from 'lucide-react';
+import { Loader2, X, Download, ChevronLeft, ChevronRight } from 'lucide-react';
 import { getOptimizedCloudinaryUrl } from '@/lib/cloudinary';
 import type { MediaFile, Pagination } from '@/types/media';
 import Link from 'next/link';
 import SplitText from './SplitText';
+import { useKeyPress } from '@/hooks/useKeyPress';
 
 interface MediaGalleryProps {
   previewMode?: boolean;
@@ -27,12 +28,102 @@ export default function MediaGallery({ previewMode = false }: MediaGalleryProps)
   const observerRef = useRef<IntersectionObserver | null>(null);
   const infiniteScrollRef = useRef<HTMLDivElement | null>(null);
 
+  const touchStartRef = useRef<number | null>(null);
+  const touchEndRef = useRef<number | null>(null);
+
   // Helper function to generate optimized Cloudinary URL using SDK
   const getOptimizedImageUrl = useCallback((file: MediaFile) => {
     return getOptimizedCloudinaryUrl(file.url, 400);
   }, []);
 
+  const handlePrev = useCallback(() => {
+    if (!selectedFile) return;
+    const currentIndex = files.findIndex(f => f.key === selectedFile.key);
+    if (currentIndex > 0) {
+      const prevFile = files[currentIndex - 1];
+      setSelectedFile(prevFile);
+      setSelectedImage(getOptimizedImageUrl(prevFile));
+    }
+  }, [files, selectedFile, getOptimizedImageUrl]);
+
+  const handleNext = useCallback(() => {
+    if (!selectedFile) return;
+    const currentIndex = files.findIndex(f => f.key === selectedFile.key);
+    if (currentIndex < files.length - 1) {
+      const nextFile = files[currentIndex + 1];
+      setSelectedFile(nextFile);
+      setSelectedImage(getOptimizedImageUrl(nextFile));
+    }
+  }, [files, selectedFile, getOptimizedImageUrl]);
+
+  const leftPressed = useKeyPress({ key: 'ArrowLeft' });
+  const rightPressed = useKeyPress({ key: 'ArrowRight' });
+  const escapePressed = useKeyPress({ key: 'Escape' });
+
+  useEffect(() => {
+    if (leftPressed && selectedFile) handlePrev();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [leftPressed]);
+
+  useEffect(() => {
+    if (rightPressed && selectedFile) handleNext();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [rightPressed]);
+
+  useEffect(() => {
+    if (escapePressed && selectedFile) {
+      setSelectedImage(null);
+      setSelectedFile(null);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [escapePressed]);
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    touchEndRef.current = null;
+    touchStartRef.current = e.targetTouches[0].clientX;
+  };
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    touchEndRef.current = e.targetTouches[0].clientX;
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStartRef.current || !touchEndRef.current) return;
+    const distance = touchStartRef.current - touchEndRef.current;
+    if (distance > 50) handleNext();
+    if (distance < -50) handlePrev();
+  };
+
+  const currentIndex = selectedFile ? files.findIndex(f => f.key === selectedFile.key) : -1;
+  const hasPrev = currentIndex > 0;
+  const hasNext = currentIndex !== -1 && currentIndex < files.length - 1;
+
+  // Refs for infinite scroll state to prevent observer recreation loops
+  const stateRef = useRef({
+    loadingMore: false,
+    hasNextPage: false,
+    currentPage: 1,
+    cursor: null as string | null,
+  });
+
+  // Sync stateRef with state
+  useEffect(() => {
+    stateRef.current = {
+      loadingMore,
+      hasNextPage: pagination?.hasNextPage ?? false,
+      currentPage,
+      cursor,
+    };
+  }, [loadingMore, pagination, currentPage, cursor]);
+
+  // Synchronous guard for fetching to prevent race conditions
+  const isLoadingRef = useRef(false);
+
   const fetchPage = useCallback(async (page: number, appendResults = false) => {
+    // SYNCHRONOUS GUARD: Check and set immediately
+    if (isLoadingRef.current) return;
+    isLoadingRef.current = true;
+
     if (appendResults) {
       setLoadingMore(true);
     } else {
@@ -40,7 +131,7 @@ export default function MediaGallery({ previewMode = false }: MediaGalleryProps)
     }
     setError(null);
     try {
-      const res = await fetch(`/api/list-media?page=${page}&cursor=${cursor || ''}`);
+      const res = await fetch(`/api/list-media?page=${page}&cursor=${stateRef.current.cursor || ''}`);
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || 'Failed');
 
@@ -57,8 +148,9 @@ export default function MediaGallery({ previewMode = false }: MediaGalleryProps)
     } finally {
       setLoading(false);
       setLoadingMore(false);
+      isLoadingRef.current = false;
     }
-  }, [cursor]);
+  }, []); // Remove cursor dependency, use stateRef.current.cursor inside
 
   // Setup intersection observer for lazy loading
   useEffect(() => {
@@ -109,33 +201,36 @@ export default function MediaGallery({ previewMode = false }: MediaGalleryProps)
 
   // Infinite scroll observer - disabled in preview mode
   useEffect(() => {
-    if (previewMode) return; // Don't setup infinite scroll in preview mode
+    if (previewMode) return;
     
     const pointer = infiniteScrollRef.current;
+    if (!pointer) return;
+
     const infiniteObserver = new IntersectionObserver(
       (entries) => {
         const [entry] = entries;
-        if (entry.isIntersecting && pagination?.hasNextPage && !loadingMore) {
-          fetchPage(currentPage + 1, true);
+        const { isIntersecting } = entry;
+        const { hasNextPage, currentPage: page } = stateRef.current;
+
+        // Use ONLY the synchronous isLoadingRef.current for the guard
+        if (isIntersecting && hasNextPage && !isLoadingRef.current) {
+          fetchPage(page + 1, true);
         }
       },
       {
-        rootMargin: '100px',
-        threshold: 0.1
+        rootMargin: '300px', // Even larger margin to load ahead
+        threshold: 0
       }
     );
 
-    if (pointer) {
-      infiniteObserver.observe(pointer);
-    }
+    infiniteObserver.observe(pointer);
 
     return () => {
-      if (pointer) {
-        infiniteObserver.unobserve(pointer);
-      }
+      infiniteObserver.disconnect();
     };
+    // fetchPage is stable enough with useCallback, and we use stateRef for volatile values
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pagination, loadingMore, currentPage]);
+  }, [previewMode, fetchPage]);
 
   // Get display files - limit to 9 in preview mode
   const displayFiles = previewMode ? files.slice(0, 9) : files;
@@ -151,7 +246,11 @@ export default function MediaGallery({ previewMode = false }: MediaGalleryProps)
   }
 
   return (
-    <section id="galeria" className="py-20 bg-white relative overflow-hidden min-h-[600px]">
+    <section 
+      id="galeria" 
+      className="py-20 bg-white relative overflow-hidden min-h-screen"
+      style={{ overflowAnchor: 'none' }}
+    >
       {/* Decorative yellow scribbles */}
       <div className="absolute top-0 left-0 w-32 h-32 opacity-20">
         <svg viewBox="0 0 100 100" className="w-full h-full text-yellow-500">
@@ -187,14 +286,16 @@ export default function MediaGallery({ previewMode = false }: MediaGalleryProps)
         </div>
 
         {loading && !loadingMore && (
-          <div className="flex justify-center items-center py-12 text-black">
-            <Loader2 className="w-8 h-8 animate-spin" />
-            <span className="ml-3">Cargando galería...</span>
+          <div className="flex flex-col justify-center items-center py-12 text-black min-h-[60vh]">
+            <Loader2 className="w-16 h-16 md:w-24 md:h-24 animate-spin mb-8" />
+            <span className="text-[25vw] md:text-[45vw] font-bold leading-none text-center select-none opacity-10 animate-pulse whitespace-nowrap overflow-hidden">
+              CARGANDO...
+            </span>
           </div>
         )}
         {/* Gallery Grid - 5 columns */}
-        <div className="relative">
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
+        <div className="relative" style={{ overflowAnchor: 'none' }}>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4" style={{ overflowAnchor: 'none' }}>
             {displayFiles.map((file, index) => {
               const isVisible = visibleImages.has(file.key);
               const optimizedUrl = isVisible ? getOptimizedImageUrl(file) : '';
@@ -258,7 +359,13 @@ export default function MediaGallery({ previewMode = false }: MediaGalleryProps)
         )}
 
         {/* Infinite Scroll Trigger - only in full mode */}
-        {!previewMode && <div ref={infiniteScrollRef} className="h-10" />}
+        {!previewMode && (
+          <div 
+            ref={infiniteScrollRef} 
+            className="h-10 w-full"
+            aria-hidden="true"
+          />
+        )}
 
         {/* Lightbox Modal */}
         {selectedImage && selectedFile && (
@@ -268,13 +375,16 @@ export default function MediaGallery({ previewMode = false }: MediaGalleryProps)
               setSelectedImage(null);
               setSelectedFile(null);
             }}
+            onTouchStart={onTouchStart}
+            onTouchMove={onTouchMove}
+            onTouchEnd={onTouchEnd}
           >
             <button
               onClick={() => {
                 setSelectedImage(null);
                 setSelectedFile(null);
               }}
-              className="absolute top-4 right-4 p-2 bg-white/10 hover:bg-white/20 rounded-full transition-colors"
+              className="absolute top-4 right-4 p-2 z-[60] bg-white/10 hover:bg-white/20 rounded-full transition-colors"
               aria-label="Cerrar"
             >
               <X className="w-6 h-6 text-white" />
@@ -287,17 +397,45 @@ export default function MediaGallery({ previewMode = false }: MediaGalleryProps)
                 link.download = selectedFile.name;
                 link.click();
               }}
-              className="absolute top-4 right-16 p-2 bg-white/10 hover:bg-white/20 rounded-full transition-colors"
+              className="absolute top-4 right-16 p-2 z-[60] bg-white/10 hover:bg-white/20 rounded-full transition-colors"
               aria-label="Descargar"
             >
               <Download className="w-6 h-6 text-white" />
             </button>
+
+            {hasPrev && (
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handlePrev();
+                }}
+                className="absolute left-4 p-2 z-[60] bg-white/10 hover:bg-white/20 rounded-full transition-colors md:left-8"
+                aria-label="Anterior"
+              >
+                <ChevronLeft className="w-8 h-8 text-white" />
+              </button>
+            )}
+
             <img
               src={selectedFile.url}
               alt="Vista ampliada"
-              className="max-w-full max-h-full object-contain animate-scale-in"
+              className="max-w-full max-h-full object-contain animate-scale-in select-none"
               onClick={(e) => e.stopPropagation()}
+              draggable={false}
             />
+
+            {hasNext && (
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleNext();
+                }}
+                className="absolute right-4 p-2 z-[60] bg-white/10 hover:bg-white/20 rounded-full transition-colors md:right-8"
+                aria-label="Siguiente"
+              >
+                <ChevronRight className="w-8 h-8 text-white" />
+              </button>
+            )}
           </div>
         )}
       </div>
