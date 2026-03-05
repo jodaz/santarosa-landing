@@ -311,7 +311,7 @@ export default function MediaGallery({ previewMode = false }: MediaGalleryProps)
                 <div
                   key={file.key}
                   data-key={file.key}
-                  className="relative aspect-square overflow-hidden rounded-lg cursor-pointer group animate-fade-in"
+                  className="relative aspect-square overflow-hidden rounded-2xl cursor-pointer group animate-fade-in"
                   style={{ animationDelay: `${(index % 20) * 0.03}s` }}
                   onClick={() => {
                     setSelectedImage(optimizedUrl);

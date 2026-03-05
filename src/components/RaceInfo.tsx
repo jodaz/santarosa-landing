@@ -77,7 +77,7 @@ export const RaceInfo = () => {
               className="block"
             >
               <Card 
-                className="border-2 border-white/20 bg-white hover:border-yellow-500/50 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 animate-fade-in-up cursor-pointer"
+                className="border border-white/20 bg-white hover:border-yellow-500/50 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 animate-fade-in-up cursor-pointer rounded-2xl"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <CardContent className="p-8">

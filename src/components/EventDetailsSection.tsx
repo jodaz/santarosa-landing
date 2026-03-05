@@ -55,7 +55,7 @@ export default function EventDetailsSection() {
                                 <p className="text-lg leading-relaxed">
                                     Un trayecto vibrante por la Av. Rómulo Gallegos: 10K lleno de adrenalina para corredores y 5K perfecto para caminantes.
                                 </p>
-                                <div className="flex items-start gap-3 bg-white/10 rounded-lg p-4">
+                                <div className="flex items-start gap-3 bg-white/10 backdrop-blur-sm border border-white/20 shadow-lg rounded-2xl p-4">
                                     <Droplet className="w-6 h-6 text-yellow-500 flex-shrink-0 mt-1" />
                                     <div>
                                         <p className="font-semibold mb-1">Puntos de Hidratación</p>
@@ -93,11 +93,11 @@ export default function EventDetailsSection() {
                                 </p>
                             </div>
                             
-                            <div className="bg-white/10 rounded-lg p-4 w-full">
+                            <div className="bg-white/10 backdrop-blur-sm border border-white/20 shadow-lg rounded-2xl p-4 w-full">
                                 <Image
                                     src={Ruta}
                                     alt="Mapa de la ruta"
-                                    className="w-full h-auto rounded-lg object-contain"
+                                    className="w-full h-auto rounded-2xl object-contain"
                                 />
                             </div>
                         </div>
@@ -120,7 +120,7 @@ export default function EventDetailsSection() {
                                 splitType="chars"
                                 tag="h2"
                             />
-                            <div className="bg-white/10 rounded-lg p-8 h-full flex flex-col">
+                            <div className="bg-white/10 backdrop-blur-sm border border-white/20 shadow-lg rounded-2xl p-8 h-full flex flex-col">
                                 <p className="text-lg mb-6">
                                     ¡Hay un lugar para todos! Participa en:
                                 </p>
@@ -168,7 +168,7 @@ export default function EventDetailsSection() {
                                 splitType="chars"
                                 tag="h2"
                             />
-                            <div className="bg-white/10 rounded-lg p-8 h-full flex flex-col">
+                            <div className="bg-white/10 backdrop-blur-sm border border-white/20 shadow-lg rounded-2xl p-8 h-full flex flex-col">
                                 <div className="flex items-start gap-4">
                                     <Trophy className="w-8 h-8 text-yellow-500 flex-shrink-0 mt-1" />
                                     <div className="flex flex-col w-full">
@@ -227,7 +227,7 @@ export default function EventDetailsSection() {
                             splitType="chars"
                             tag="h2"
                         />
-                        <div className="w-full flex flex-col sm:flex-row bg-white/10 rounded-lg overflow-hidden">
+                        <div className="w-full flex flex-col sm:flex-row bg-white/10 backdrop-blur-sm border border-white/20 shadow-lg mb-4 rounded-2xl overflow-hidden">
                             <div className="p-8 flex-1">
                                 <p className="text-lg mb-6">
                                     Tu kit incluye:

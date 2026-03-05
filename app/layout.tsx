@@ -9,6 +9,10 @@ import '@fontsource/poppins/600.css';
 import '@fontsource/poppins/700.css';
 import '@fontsource/permanent-marker';
 
+import { Navigation } from "@/components/Navigation";
+import HeroSection from "@/components/HeroSection";
+import Footer from "@/components/Footer";
+
 export const metadata: Metadata = {
     metadataBase: new URL('https://santarosa10k.com'),
     title: {
@@ -38,8 +42,13 @@ export default function RootLayout({
 }) {
     return (
         <html lang="es">
-            <body>
-                {children}
+            <body className="min-h-screen flex flex-col bg-white w-full">
+                <Navigation />
+                <HeroSection />
+                <main className="flex-grow flex flex-col w-full">
+                    {children}
+                </main>
+                <Footer />
             </body>
             <GoogleAnalytics gaId={`${process.env.NEXT_PUBLIC_ANALYTICS}`} />
         </html>
