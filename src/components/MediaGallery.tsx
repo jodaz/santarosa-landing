@@ -25,6 +25,13 @@ export default function MediaGallery({ previewMode = false }: MediaGalleryProps)
   const [visibleImages, setVisibleImages] = useState<Set<string>>(new Set());
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [selectedFile, setSelectedFile] = useState<MediaFile | null>(null);
+  const [isImageLoading, setIsImageLoading] = useState(true);
+
+  useEffect(() => {
+    if (selectedFile) {
+      setIsImageLoading(true);
+    }
+  }, [selectedFile]);
   const observerRef = useRef<IntersectionObserver | null>(null);
   const infiniteScrollRef = useRef<HTMLDivElement | null>(null);
 
@@ -416,12 +423,18 @@ export default function MediaGallery({ previewMode = false }: MediaGalleryProps)
               </button>
             )}
 
+            {isImageLoading && (
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-[65]">
+                <Loader2 className="w-12 h-12 text-white/75 animate-spin" />
+              </div>
+            )}
             <img
               src={selectedFile.url}
               alt="Vista ampliada"
-              className="max-w-full max-h-full object-contain animate-scale-in select-none"
+              className={`max-w-full max-h-full object-contain animate-scale-in select-none transition-opacity duration-300 ${isImageLoading ? 'opacity-0' : 'opacity-100'}`}
               onClick={(e) => e.stopPropagation()}
               draggable={false}
+              onLoad={() => setIsImageLoading(false)}
             />
 
             {hasNext && (
